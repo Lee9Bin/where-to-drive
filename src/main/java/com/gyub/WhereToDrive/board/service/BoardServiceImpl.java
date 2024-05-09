@@ -22,6 +22,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public Board findById(int bid) throws Exception {
+        boardMapper.upHit(bid);
         return boardMapper.findById(bid);
     }
 
@@ -41,13 +42,13 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void upHit(int bid) throws Exception {
-        boardMapper.upHit(bid);
+    public int getBoardListCnt(Search search) throws Exception {
+        return boardMapper.getBoardListCnt(search);
     }
 
     @Override
-    public int getBoardListCnt(Search search) throws Exception {
-        return boardMapper.getBoardListCnt(search);
+    public List<Board> getBoardList(Search search) {
+        return boardMapper.getBoardList(search);
     }
 }
 

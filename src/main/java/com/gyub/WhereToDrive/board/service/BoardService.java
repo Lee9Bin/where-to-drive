@@ -13,6 +13,7 @@ public interface BoardService {
 	void insert(Board boardVO) throws Exception;
 	void update(Board boardVO) throws Exception;
 	void delete(int bid) throws Exception;
-	void upHit(int bid) throws Exception;
+
 	int getBoardListCnt(Search search) throws Exception;
+	List<Board> getBoardList(Search search);
 }
