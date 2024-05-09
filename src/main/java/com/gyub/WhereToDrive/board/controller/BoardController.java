@@ -1,104 +1,70 @@
 package com.gyub.WhereToDrive.board.controller;
 
-import com.gyub.WhereToDrive.board.entity.BoardVO;
+import com.gyub.WhereToDrive.board.entity.Board;
 import com.gyub.WhereToDrive.board.service.BoardService;
-import com.gyub.WhereToDrive.common.Search;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
 @RequestMapping(value = "/board")
+@RequiredArgsConstructor
 public class BoardController {
 
-	@Autowired
-	private BoardService boardService;
+    private final BoardService boardService;
 
-	@RequestMapping(value = "/getBoardList", method = RequestMethod.GET)
+    @GetMapping("/getBoardList")
+    public String getBoardList(Model model) throws Exception {
+        model.addAttribute("boardList", boardService.findByAll());
+        return "board/index";
 
-	public String getBoardList(Model model
+    }
 
-			, @RequestParam(required = false, defaultValue = "1") int page
-			, @RequestParam(required = false, defaultValue = "1") int range
-			, @RequestParam(required = false, defaultValue = "title") String searchType
-			, @RequestParam(required = false) String keyword,
-			@ModelAttribute("search") Search search
-			) throws Exception {
+    @RequestMapping("/boardForm")
+    public String boardForm(@ModelAttribute("boardVO") Board vo, Model model, HttpServletRequest request) {
+        return "board/boardForm";
+    }
 
-		
-		//�˻�
-		model.addAttribute("search", search);
-		search.setSearchType(searchType);
-		search.setKeyword(keyword);
 
-		//��ü �Խñ� ����
-		int listCnt = boardService.getBoardListCnt(search);
+    @RequestMapping(value = "/getBoardContent", method = RequestMethod.GET)
+    public String getBoardContent(Model model, @RequestParam("bid") int bid) throws Exception {
+        model.addAttribute("boardContent", boardService.findById(bid));
+        return "board/boardContent";
+    }
 
-		//�˻�
-		search.pageInfo(page, range, listCnt);
 
-		//����¡
-		model.addAttribute("pagination", search);
+    @RequestMapping(value = "/editForm", method = RequestMethod.GET)
+    public String editForm(@RequestParam("bid") int bid, @RequestParam("mode") String mode, Model model) throws Exception {
+        model.addAttribute("boardContent", boardService.findById(bid));
+        model.addAttribute("mode", mode);
+        model.addAttribute("boardVO", new Board());
+        return "board/boardForm";
+    }
 
-		//�Խñ� ȭ�� ���
-		model.addAttribute("boardList", boardService.getBoardList(search));
-		return "board/index";
+    @RequestMapping(value = "/saveBoard", method = RequestMethod.POST)
+    public String saveBoard(@ModelAttribute("boardVO") Board boardVO, @RequestParam("mode") String mode, RedirectAttributes rttr) throws Exception {
 
-	}
-	
-	@RequestMapping("/boardForm")
-	public String boardForm(@ModelAttribute("boardVO") BoardVO vo, Model model, HttpServletRequest request) {
-		return "board/boardForm";
-	}
+        if (mode.equals("edit")) {
+            boardService.update(boardVO);
+        } else {
+            boardService.insert(boardVO);
+        }
+        return "redirect:/board/getBoardList";
+    }
 
-	
-	@RequestMapping(value = "/getBoardContent", method = RequestMethod.GET)
-	public String getBoardContent(Model model, @RequestParam("bid") int bid) throws Exception {
-		model.addAttribute("boardContent", boardService.getBoardContent(bid));	
-		return "board/boardContent";
-	}
-	
+    @RequestMapping(value = "/deleteBoard", method = RequestMethod.GET)
+    public String deleteBoard(RedirectAttributes rttr, @RequestParam("bid") int bid) throws Exception {
+        boardService.delete(bid);
+        return "redirect:/board/getBoardList";
 
-	@RequestMapping(value = "/editForm", method = RequestMethod.GET)
-	public String editForm(@RequestParam("bid") int bid, @RequestParam("mode") String mode, Model model) throws Exception {
-		model.addAttribute("boardContent", boardService.getBoardContent(bid));
-		model.addAttribute("mode", mode);
-		model.addAttribute("boardVO", new BoardVO());
-		return "board/boardForm";
-	}
-	
-	@RequestMapping(value = "/saveBoard", method = RequestMethod.POST)
-	public String saveBoard(@ModelAttribute("boardVO") BoardVO boardVO
-			, @RequestParam("mode") String mode
-			, RedirectAttributes rttr) throws Exception {
+    }
 
-		if (mode.equals("edit")) {
-			boardService.updateBoard(boardVO);
-		} else {
-			boardService.insertBoard(boardVO);
-		}
-		return "redirect:/board/getBoardList";
-	}
-	
-	@RequestMapping(value = "/deleteBoard", method = RequestMethod.GET)
 
-	public String deleteBoard(RedirectAttributes rttr, @RequestParam("bid") int bid) throws Exception {
-
-		boardService.deleteBoard(bid);
-
-		return "redirect:/board/getBoardList";
-
-	}
-	
-	
 }
 	
 	
