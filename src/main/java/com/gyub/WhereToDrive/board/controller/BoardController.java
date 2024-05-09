@@ -19,10 +19,9 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping
-    public String getBoardList(Model model) throws Exception {
+    public String findByAll(Model model) throws Exception {
         model.addAttribute("boardList", boardService.findByAll());
         return "board/index";
-
     }
 
     @RequestMapping("/boardForm")

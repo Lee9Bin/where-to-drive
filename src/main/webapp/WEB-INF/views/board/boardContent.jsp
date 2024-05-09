@@ -26,13 +26,13 @@
 <script>
 	//목록으로 이동
 	$(document).on('click', '#btnList', function() {
-		location.href = "${pageContext.request.contextPath}/board/getBoardList";
+		location.href = "${pageContext.request.contextPath}/boards/getBoardList";
 		}
 	);
 	
 	//수정버튼 클릭
 	$(document).on('click', '#btnUpdate', function() {
-		var url = "${pageContext.request.contextPath}/board/editForm";
+		var url = "${pageContext.request.contextPath}/boards/editForm";
 		url = url + "?bid="+${boardContent.bid};
 		url = url + "&mode=edit";
 		
@@ -44,7 +44,7 @@
 
 	$(document).on('click', '#btnDelete', function(){
 
-    var url = "${pageContext.request.contextPath}/board/deleteBoard";
+    var url = "${pageContext.request.contextPath}/boards/deleteBoard";
 
     url = url + "?bid=" + ${boardContent.bid};
 
@@ -68,7 +68,8 @@
 					<a href="">Drive</a>
 				</div>
 				<ul class="main-menu">
-					<li><a href="http://localhost:8080/board/getBoardList"
+					<li><a href="http://localhost:8080/boards
+					/getBoardList"
 						target="_blank">게시판</a></li>
 					<li><a href="https://weather.naver.com/today/09620102"
 						target="_blank">오늘의 날씨</a></li>
