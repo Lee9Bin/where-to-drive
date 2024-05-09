@@ -1,62 +1,53 @@
 package com.gyub.WhereToDrive.board.service;
 
 
-import com.gyub.WhereToDrive.board.mapper.BoardDAO;
-import com.gyub.WhereToDrive.board.entity.BoardVO;
+import com.gyub.WhereToDrive.board.entity.Board;
+import com.gyub.WhereToDrive.board.mapper.BoardMapper;
 import com.gyub.WhereToDrive.common.Search;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
-    @Autowired
-    private BoardDAO boardDAO;
+    private final BoardMapper boardMapper;
 
-    public List<BoardVO> getBoardList() throws Exception {
-        return boardDAO.getBoardList();
+    @Override
+    public List<Board> findByAll() throws Exception {
+        return boardMapper.findByAll();
     }
 
     @Override
-    public void insertBoard(BoardVO boardVO) throws Exception {
-        boardDAO.insertBoard(boardVO);
-    }
-
-
-    public BoardVO getBoardContent(int bid) throws Exception {
-        boardDAO.updateViewCnt(bid);
-        return boardDAO.getBoardContent(bid);
+    public Board findById(int bid) throws Exception {
+        return boardMapper.findById(bid);
     }
 
     @Override
-
-    public void deleteBoard(int bid) throws Exception {
-
-        boardDAO.deleteBoard(bid);
-
+    public void insert(Board boardVO) throws Exception {
+        boardMapper.insert(boardVO);
     }
 
     @Override
-    public void updateBoard(BoardVO boardVO) throws Exception {
-        boardDAO.updateBoard(boardVO);
+    public void update(Board boardVO) throws Exception {
+        boardMapper.update(boardVO);
     }
-
 
     @Override
-    public List<BoardVO> getBoardList(Search search) throws Exception {
-
-        return boardDAO.getBoardList(search);
-
+    public void delete(int bid) throws Exception {
+        boardMapper.delete(bid);
     }
 
+    @Override
+    public void upHit(int bid) throws Exception {
+        boardMapper.upHit(bid);
+    }
 
     @Override
     public int getBoardListCnt(Search search) throws Exception {
-
-        return boardDAO.getBoardListCnt(search);
-
+        return boardMapper.getBoardListCnt(search);
     }
 }
 
