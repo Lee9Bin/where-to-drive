@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: WhereToDrive
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/where_to_drive?serverTimezone=UTC&useUniCode=yes&characterEncoding=UTF-8
+    username: ssafy
+    password: ssafy
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+mybatis:
+  type-aliases-package: com.gyub.WhereToDrive
+  mapper-locations: mappers/**/*.xml
