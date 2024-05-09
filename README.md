@@ -15,21 +15,21 @@
 ## 주요 기능
 
 ### 로그인 및 회원가입
-![스크린샷 2024-05-09 오후 8.25.30.png](..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fwn%2Fhkv4nfh12czc_c4xgd2j9pf00000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_GTtegN%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-05-09%20%EC%98%A4%ED%9B%84%208.25.30.png)
+<img width="801" alt="로그인" src="https://github.com/Lee9Bin/python_algorism/assets/116883491/d13c322c-f899-4962-8374-9f420566e6f7">
 사용자는 회원가입을 통해 계정을 생성하고 로그인하여 서비스를 이용할 수 있습니다.
 
 ### 게시판
-![스크린샷 2024-05-09 오후 8.26.00.png](..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fwn%2Fhkv4nfh12czc_c4xgd2j9pf00000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_2OuWci%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-05-09%20%EC%98%A4%ED%9B%84%208.26.00.png)
+<img width="884" alt="게시판" src="https://github.com/Lee9Bin/python_algorism/assets/116883491/867cfdf8-5190-4df7-9c0a-de77bae8ac3a">
 사용자들은 다양한 드라이브 경험과 정보를 나눌 수 있는 게시판을 이용할 수 있습니다. 
 검색 기능을 통해 특정 작성자나 내용의 키워드로 게시글을 찾을 수 있습니다.
 
 ### 지도를 이용한 검색
-![스크린샷 2024-05-09 오후 8.27.55.png](..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fwn%2Fhkv4nfh12czc_c4xgd2j9pf00000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_nRdUVP%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-05-09%20%EC%98%A4%ED%9B%84%208.27.55.png)
+<img width="826" alt="지도1" src="https://github.com/Lee9Bin/python_algorism/assets/116883491/b7793732-6cf2-4994-8bb9-2cb7f4d59e84">
 카카오 API를 활용하여  지도를 활용하여 맛집이나 카페 등의 장소를 검색할 수 있습니다. 마커를 클릭하면 해당 장소의 정보가 표시되고, 
 정보창을 통해 상세 정보를 확인할 수 있습니다.
 
 ### 현재 위치 기준으로 검색
-![스크린샷 2024-05-09 오후 8.28.34.png](..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fwn%2Fhkv4nfh12czc_c4xgd2j9pf00000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_HWMR5v%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-05-09%20%EC%98%A4%ED%9B%84%208.28.34.png)
+<img width="854" alt="지도2" src="https://github.com/Lee9Bin/python_algorism/assets/116883491/f3580a61-135d-4f34-8cdd-025eaa766393">
 Geolocation API를 활용하여 현재 위치를 기준으로 주변에 있는 장소를 찾아볼 수 있습니다. 
 각 카테고리를 선택하여 카페, 편의점 등의 장소를 쉽게 찾아볼 수 있습니다.
 
