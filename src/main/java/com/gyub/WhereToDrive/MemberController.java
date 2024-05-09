@@ -3,7 +3,7 @@ package com.gyub.WhereToDrive;
 import java.util.Locale;
 
 import com.gyub.WhereToDrive.member.service.MemberService;
-import com.gyub.WhereToDrive.member.vo.MemberVO;
+import com.gyub.WhereToDrive.member.entity.MemberVO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
