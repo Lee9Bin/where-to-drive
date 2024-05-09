@@ -1,0 +1,36 @@
+# where to drive!
+- - -
+🚗 드라이브 어디갈Car!
+
+**캡스톤디자인 프로젝트**
+
+**학과:** 소프트웨어응용학부
+**작성자:** 이규빈
+
+## 작품 개요
+
+드라이브 코스 정보를 손쉽게 얻을 수 있는 웹사이트를 제작했습니다.  
+코로나로 인해 활동이 제한되는 상황에서 드라이브를 자주 하게 됐고 코스를 제공하는 서비스가 있으면 좋겠다고 생각했습니다.
+
+## 주요 기능
+
+### 로그인 및 회원가입
+![스크린샷 2024-05-09 오후 8.25.30.png](..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fwn%2Fhkv4nfh12czc_c4xgd2j9pf00000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_GTtegN%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-05-09%20%EC%98%A4%ED%9B%84%208.25.30.png)
+사용자는 회원가입을 통해 계정을 생성하고 로그인하여 서비스를 이용할 수 있습니다.
+
+### 게시판
+![스크린샷 2024-05-09 오후 8.26.00.png](..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fwn%2Fhkv4nfh12czc_c4xgd2j9pf00000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_2OuWci%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-05-09%20%EC%98%A4%ED%9B%84%208.26.00.png)
+사용자들은 다양한 드라이브 경험과 정보를 나눌 수 있는 게시판을 이용할 수 있습니다. 
+검색 기능을 통해 특정 작성자나 내용의 키워드로 게시글을 찾을 수 있습니다.
+
+### 지도를 이용한 검색
+![스크린샷 2024-05-09 오후 8.27.55.png](..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fwn%2Fhkv4nfh12czc_c4xgd2j9pf00000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_nRdUVP%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-05-09%20%EC%98%A4%ED%9B%84%208.27.55.png)
+카카오 API를 활용하여  지도를 활용하여 맛집이나 카페 등의 장소를 검색할 수 있습니다. 마커를 클릭하면 해당 장소의 정보가 표시되고, 
+정보창을 통해 상세 정보를 확인할 수 있습니다.
+
+### 현재 위치 기준으로 검색
+![스크린샷 2024-05-09 오후 8.28.34.png](..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fwn%2Fhkv4nfh12czc_c4xgd2j9pf00000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_HWMR5v%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-05-09%20%EC%98%A4%ED%9B%84%208.28.34.png)
+Geolocation API를 활용하여 현재 위치를 기준으로 주변에 있는 장소를 찾아볼 수 있습니다. 
+각 카테고리를 선택하여 카페, 편의점 등의 장소를 쉽게 찾아볼 수 있습니다.
+
+🌟 감사합니다! 🌟
