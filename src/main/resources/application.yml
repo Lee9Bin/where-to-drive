@@ -11,5 +11,5 @@ spring:
       prefix: /WEB-INF/views/
       suffix: .jsp
 mybatis:
-  type-aliases-package: com.gyub.WhereToDrive
+  type-aliases-package: com.gyub.WhereToDrive.*.entity
   mapper-locations: mappers/**/*.xml
