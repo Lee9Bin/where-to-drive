@@ -12,13 +12,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-@RequestMapping(value = "/board")
+@RequestMapping(value = "/boards")
 @RequiredArgsConstructor
 public class BoardController {
 
     private final BoardService boardService;
 
-    @GetMapping("/getBoardList")
+    @GetMapping
     public String getBoardList(Model model) throws Exception {
         model.addAttribute("boardList", boardService.findByAll());
         return "board/index";
