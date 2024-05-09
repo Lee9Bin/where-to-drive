@@ -19,7 +19,7 @@
 	                 		   , #{memberAddr2})
     </insert>
    <!-- 로그인 -->
-	<select id="login" resultType="com.gyub.WhereToDrive.member.vo.MemberVO">
+	<select id="login" resultType="com.gyub.WhereToDrive.member.entity.MemberVO">
 		SELECT memberId, memberPw 
 		  FROM MP_MEMBER
 		 WHERE memberId = #{memberId}
