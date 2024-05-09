@@ -1,7 +1,7 @@
 package com.gyub.WhereToDrive.member.dao;
 
 
-import com.gyub.WhereToDrive.member.vo.MemberVO;
+import com.gyub.WhereToDrive.member.entity.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

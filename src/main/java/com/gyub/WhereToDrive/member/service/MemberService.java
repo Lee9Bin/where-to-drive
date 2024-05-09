@@ -1,7 +1,7 @@
 package com.gyub.WhereToDrive.member.service;
 
 
-import com.gyub.WhereToDrive.member.vo.MemberVO;
+import com.gyub.WhereToDrive.member.entity.MemberVO;
 
 
 public interface MemberService {
