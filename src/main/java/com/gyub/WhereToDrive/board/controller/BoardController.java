@@ -1,6 +1,6 @@
 package com.gyub.WhereToDrive.board.controller;
 
-import com.gyub.WhereToDrive.board.model.BoardVO;
+import com.gyub.WhereToDrive.board.entity.BoardVO;
 import com.gyub.WhereToDrive.board.service.BoardService;
 import com.gyub.WhereToDrive.common.Search;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,8 +1,8 @@
 package com.gyub.WhereToDrive.board.service;
 
 
-import com.gyub.WhereToDrive.board.dao.BoardDAO;
-import com.gyub.WhereToDrive.board.model.BoardVO;
+import com.gyub.WhereToDrive.board.mapper.BoardDAO;
+import com.gyub.WhereToDrive.board.entity.BoardVO;
 import com.gyub.WhereToDrive.common.Search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

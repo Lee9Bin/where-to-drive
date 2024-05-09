@@ -1,4 +1,4 @@
-package com.gyub.WhereToDrive.board.model;
+package com.gyub.WhereToDrive.board.entity;
 
 public class BoardVO {
 

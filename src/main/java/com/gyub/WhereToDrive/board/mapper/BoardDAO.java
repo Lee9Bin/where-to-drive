@@ -1,7 +1,7 @@
-package com.gyub.WhereToDrive.board.dao;
+package com.gyub.WhereToDrive.board.mapper;
 
 
-import com.gyub.WhereToDrive.board.model.BoardVO;
+import com.gyub.WhereToDrive.board.entity.BoardVO;
 import com.gyub.WhereToDrive.common.Search;
 import org.apache.ibatis.annotations.Mapper;
 

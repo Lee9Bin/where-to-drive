@@ -1,7 +1,7 @@
 package com.gyub.WhereToDrive.board.service;
 
 
-import com.gyub.WhereToDrive.board.model.BoardVO;
+import com.gyub.WhereToDrive.board.entity.BoardVO;
 import com.gyub.WhereToDrive.common.Search;
 
 import java.util.List;

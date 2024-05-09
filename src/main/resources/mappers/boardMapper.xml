@@ -8,12 +8,12 @@
 
 
 
-<mapper namespace="com.gyub.WhereToDrive.board.dao.BoardDAO">
+<mapper namespace="com.gyub.WhereToDrive.board.mapper.BoardDAO">
 
 
 
 	<select id="getBoardList"
-		resultType="com.gyub.WhereToDrive.board.model.BoardVO">
+		resultType="com.gyub.WhereToDrive.board.entity.BoardVO">
 
 		SELECT
 		BID, CATE_CD, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID,
@@ -93,8 +93,8 @@
 
 
 	<select id="getBoardContent"
-		resultType="com.gyub.WhereToDrive.board.model.BoardVO"
-		parameterType="com.gyub.WhereToDrive.board.model.BoardVO">
+		resultType="com.gyub.WhereToDrive.board.entity.BoardVO"
+		parameterType="com.gyub.WhereToDrive.board.entity.BoardVO">
 
 		SELECT
 
@@ -114,7 +114,7 @@
 
 
 	<insert id="insertBoard"
-		parameterType="com.gyub.WhereToDrive.board.model.BoardVO">
+		parameterType="com.gyub.WhereToDrive.board.entity.BoardVO">
 
 		INSERT INTO TBL_BOARD (TITLE, CONTENT, TAG,
 		VIEW_CNT, REG_ID, REG_DT, EDIT_DT)
@@ -143,7 +143,7 @@
 
 
 	<update id="updateBoard"
-		parameterType="com.gyub.WhereToDrive.board.model.BoardVO">
+		parameterType="com.gyub.WhereToDrive.board.entity.BoardVO">
 
 		UPDATE TBL_BOARD SET
 
@@ -178,7 +178,7 @@
 
 
 	<update id="updateViewCnt"
-		parameterType="com.gyub.WhereToDrive.board.model.BoardVO">
+		parameterType="com.gyub.WhereToDrive.board.entity.BoardVO">
 
 		UPDATE TBL_BOARD SET
 
