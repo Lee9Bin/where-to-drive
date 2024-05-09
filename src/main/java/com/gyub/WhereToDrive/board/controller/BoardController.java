@@ -2,7 +2,6 @@ package com.gyub.WhereToDrive.board.controller;
 
 import com.gyub.WhereToDrive.board.entity.Board;
 import com.gyub.WhereToDrive.board.service.BoardService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
@@ -24,8 +23,8 @@ public class BoardController {
         return "board/index";
     }
 
-    @RequestMapping("/boardForm")
-    public String boardForm(@ModelAttribute("boardVO") Board vo, Model model, HttpServletRequest request) {
+    @GetMapping("/boardForm")
+    public String boardForm() {
         return "board/boardForm";
     }
 
@@ -53,7 +52,7 @@ public class BoardController {
         } else {
             boardService.insert(boardVO);
         }
-        return "redirect:/board/getBoardList";
+        return "redirect:/boards";
     }
 
     @RequestMapping(value = "/deleteBoard", method = RequestMethod.GET)
