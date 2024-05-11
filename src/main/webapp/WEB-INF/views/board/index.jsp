@@ -371,10 +371,9 @@
                                 <c:forEach var="list" items="${boardList}">
                                     <tr>
                                         <td><c:out value="${list.bid}"/></td>
-                                        <td><a href="#"
-											   onClick="fn_contentView(<c:out value="${list.bid}"/>)">
-											<c:out value="${list.title}"/>
-										</a></td>
+                                        <td><a href="/boards/${list.bid}">
+                                            <c:out value="${list.title}"/>
+                                        </a></td>
                                         <td><c:out value="${list.reg_id}"/></td>
                                         <td><c:out value="${list.view_cnt}"/></td>
                                         <td><c:out value="${list.reg_dt}"/></td>

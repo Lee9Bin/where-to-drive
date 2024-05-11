@@ -3,6 +3,7 @@ package com.gyub.WhereToDrive.board.controller;
 import com.gyub.WhereToDrive.board.entity.Board;
 import com.gyub.WhereToDrive.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
+@Slf4j
 @Controller
 @RequestMapping(value = "/boards")
 @RequiredArgsConstructor
@@ -25,12 +27,14 @@ public class BoardController {
 
     @GetMapping("/boardForm")
     public String boardForm() {
+        log.info("boardForm 메서드 실행");
         return "board/boardForm";
     }
 
 
-    @RequestMapping(value = "/getBoardContent", method = RequestMethod.GET)
-    public String getBoardContent(Model model, @RequestParam("bid") int bid) throws Exception {
+    @GetMapping("/{bid}")
+    public String findById(Model model, @PathVariable("bid") int bid) throws Exception {
+        log.info("findById 메서드 실행");
         model.addAttribute("boardContent", boardService.findById(bid));
         return "board/boardContent";
     }
