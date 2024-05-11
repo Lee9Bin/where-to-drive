@@ -40,12 +40,14 @@
 
             <div class="sign-in">
                 <div class="btn-group" role="group" aria-label="Board Actions">
-                    <form class="mx-1" action="/boards/edit/${boardContent.bid}" method="get">
-                        <button type="submit" class="btn btn-primary">수정</button>
-                    </form>
-                    <form class="mx-1" action="/boards/delete/${boardContent.bid}" method="post">
-                        <button type="submit" class="btn btn-danger">삭제</button>
-                    </form>
+                    <c:if test="${boardContent.reg_id == member.memberId}">
+                        <form class="mx-1" action="/boards/edit/${boardContent.bid}" method="get">
+                            <button type="submit" class="btn btn-primary">수정</button>
+                        </form>
+                        <form class="mx-1" action="/boards/delete/${boardContent.bid}" method="post">
+                            <button type="submit" class="btn btn-danger">삭제</button>
+                        </form>
+                    </c:if>
                     <form class="mx-1" action="/boards" method="get">
                         <button type="submit" class="btn btn-secondary">목록</button>
                     </form>
