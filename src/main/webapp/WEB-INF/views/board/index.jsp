@@ -15,40 +15,33 @@
             </div>
             <div class="container">
                 <div class="table-responsive">
-                    <table class="table table-striped table-sm">
-                        <colgroup>
-                            <col style="width: 5%;"/>
-                            <col style="width: auto;"/>
-                            <col style="width: 15%;"/>
-                            <col style="width: 10%;"/>
-                            <col style="width: 10%;"/>
-                        </colgroup>
-                        <thead>
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
                         <tr>
-                            <th>NO</th>
-                            <th>글제목</th>
-                            <th>작성자</th>
-                            <th>조회수</th>
-                            <th>작성일</th>
+                            <th scope="col">NO</th>
+                            <th scope="col">글 제목</th>
+                            <th scope="col">작성자</th>
+                            <th scope="col">조회수</th>
+                            <th scope="col">작성일</th>
                         </tr>
                         </thead>
                         <tbody>
                         <c:choose>
-                            <c:when test="${empty boardList }">
+                            <c:when test="${empty boardList}">
                                 <tr>
-                                    <td colspan="5" align="center">데이터가 없습니다.</td>
+                                    <td colspan="5" class="text-center">게시글이 없습니다.</td>
                                 </tr>
                             </c:when>
                             <c:when test="${!empty boardList}">
-                                <c:forEach var="list" items="${boardList}">
+                                <c:forEach var="list" items="${boardList}" varStatus="status">
                                     <tr>
-                                        <td><c:out value="${list.bid}"/></td>
+                                        <td><c:out value="${status.index + 1}" /></td>
                                         <td><a href="/boards/${list.bid}">
-                                            <c:out value="${list.title}"/>
+                                            <c:out value="${list.title}" />
                                         </a></td>
-                                        <td><c:out value="${list.reg_id}"/></td>
-                                        <td><c:out value="${list.view_cnt}"/></td>
-                                        <td><c:out value="${list.reg_dt}"/></td>
+                                        <td><c:out value="${list.reg_id}" /></td>
+                                        <td><c:out value="${list.view_cnt}" /></td>
+                                        <td><c:out value="${list.reg_dt}" /></td>
                                     </tr>
                                 </c:forEach>
                             </c:when>
@@ -56,7 +49,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div>
+            </div>
+            <div>
                     <c:if test="${member.memberId != null}">
                         <button type="button" class="btn sign-in" id="btnWriteForm"
                                 style="margin-bottom: 10px;">글쓰기
@@ -65,42 +59,27 @@
                 </div>
 
                 <!-- pagination{s} -->
-
                 <div id="paginationBox">
-
                     <ul class="pagination">
-
                         <c:if test="${pagination.prev}">
-
                             <li class="page-item"><a class="page-link" href="#"
                                                      onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType }', '${search.keyword }' )">Previous</a>
                             </li>
-
                         </c:if>
-
-
                         <c:forEach begin="${pagination.startPage}"
                                    end="${pagination.endPage}" var="idx">
-
                             <li
                                     class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
                                     class="page-link" href="#"
                                     onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType }', '${search.keyword }')">
                                     ${idx} </a></li>
-
                         </c:forEach>
-
-
                         <c:if test="${pagination.next}">
-
                             <li class="page-item"><a class="page-link" href="#"
                                                      onClick="fn_next('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType }', '${search.keyword }')">Next</a>
                             </li>
-
                         </c:if>
-
                     </ul>
-
                 </div>
 
                 <!-- pagination{e} -->
