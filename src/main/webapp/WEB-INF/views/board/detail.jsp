@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
 
-
 <!DOCTYPE html>
-
 <html>
 <head>
 
@@ -17,37 +13,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
     <link rel="stylesheet" href="/resources/css/main.css">
 
-
     <title>드라이브 어디갈Car!</title>
-
-
-    <script>
-        //목록으로 이동
-        $(document).on('click', '#btnList', function () {
-                location.href = "${pageContext.request.contextPath}/boards/getBoardList";
-            }
-        );
-
-        //수정버튼 클릭
-        $(document).on('click', '#btnUpdate', function () {
-            var url = "${pageContext.request.contextPath}/boards/editForm";
-            url = url + "?bid=" +${boardContent.bid};
-            url = url + "&mode=edit";
-
-
-            location.href = url;
-        });
-
-        //삭제 버튼 클릭 이벤트
-
-        $(document).on('click', '#btnDelete', function () {
-            var url = "${pageContext.request.contextPath}/boards/deleteBoard";
-            url = url + "?bid=" + ${boardContent.bid};
-            location.href = url;
-        });
-
-    </script>
-
 
 </head>
 
@@ -119,10 +85,18 @@
             </div>
         </div>
 
-        <div style="margin-top: 20px">
-            <button type="button" class="btn sign-in" id="btnUpdate">수정</button>
-            <button type="button" class="btn sign-in" id="btnDelete">삭제</button>
-            <button type="button" class="btn sign-in" id="btnList">목록</button>
+        <div class="sign-in">
+            <div class="btn-group" role="group" aria-label="Board Actions">
+                <form class="mx-1" action="/boards/editForm/${boardContent.bid}" method="get">
+                    <button type="submit" class="btn">수정</button>
+                </form>
+                <form class="mx-1" action="/boards/delete/${boardContent.bid}" method="post">
+                    <button type="submit" class="btn">삭제</button>
+                </form>
+                <form class="mx-1" action="/boards" method="get">
+                    <button type="submit" class="btn ">목록</button>
+                </form>
+            </div>
         </div>
     </div>
 </article>
