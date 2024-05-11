@@ -2,13 +2,14 @@ package com.gyub.WhereToDrive.board.controller;
 
 import com.gyub.WhereToDrive.board.entity.Board;
 import com.gyub.WhereToDrive.board.service.BoardService;
+import com.gyub.WhereToDrive.member.entity.MemberVO;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Slf4j
@@ -49,20 +50,25 @@ public class BoardController {
     }
 
     @PostMapping("/edit")
-    public String saveBoard(@ModelAttribute Board boardVO) throws Exception {
+    public String update(@ModelAttribute Board boardVO) throws Exception {
         log.info(boardVO.toString());
         boardService.update(boardVO);
         return "redirect:/boards";
     }
 
-    @RequestMapping(value = "/deleteBoard", method = RequestMethod.GET)
-    public String deleteBoard(RedirectAttributes rttr, @RequestParam("bid") int bid) throws Exception {
-        boardService.delete(bid);
-        return "redirect:/board/getBoardList";
-
+    @PostMapping("/insert")
+    public String insert(@ModelAttribute Board boardVO) throws Exception {
+        log.info(boardVO.toString());
+        boardService.insert(boardVO);
+        return "redirect:/boards";
     }
 
-
+    @PostMapping(value = "/delete/{bid}")
+    public String deleteBoard(@PathVariable("bid") int bid, HttpSession session) throws Exception {
+        log.info(((MemberVO)session.getAttribute("member")).getMemberId());
+        boardService.delete(bid);
+        return "redirect:/boards";
+    }
 }
 	
 	

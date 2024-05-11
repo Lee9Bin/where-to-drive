@@ -18,7 +18,7 @@
 <article>
 	<div class="container" role="main">
 		<h2>게시글을 작성해보세요!</h2>
-		<form id="form" role="form" method="post" action="${pageContext.request.contextPath}/boards/saveBoard">
+		<form id="form" role="form" method="post" action="/boards/insert">
 			<input type="hidden" name="mode" />
 			<div class="mb-3">
 				<label for="title">제목</label>
@@ -26,7 +26,7 @@
 			</div>
 			<div class="mb-3">
 				<label for="reg_id">작성자</label>
-				<input type="text" name="reg_id" id="reg_id" class="form-control" placeholder="이름을 입력해 주세요" />
+				<input type="text" name="reg_id" id="reg_id" class="form-control" value="${member.memberId}" readonly />
 			</div>
 			<div class="mb-3">
 				<label for="content">내용</label>
