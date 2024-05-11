@@ -2,6 +2,8 @@
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="layout/header.jsp"%>
+<link rel="stylesheet"
+      href="/resources/css/map/searchMap.css">
 <div class="body__container">
   <!--visual-->
   <section class="section section--visual">
@@ -29,7 +31,6 @@
       <div class="map_wrap">
         <!-- 지도 -->
         <div id="map"></div>
-
         <div id="menu_wrap" class="bg_white">
           <div class="option">
             <div>

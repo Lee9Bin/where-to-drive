@@ -38,7 +38,7 @@
     <div class="inner clearfix">
         <div class="menu-group float--left">
             <div class="logo">
-                <a href="">Drive</a>
+                <a href="/">Drive</a>
             </div>
             <ul class="main-menu">
                 <li><a href="http://localhost:8080/boards" style="margin-bottom: 3px;">게시판</a></li>
