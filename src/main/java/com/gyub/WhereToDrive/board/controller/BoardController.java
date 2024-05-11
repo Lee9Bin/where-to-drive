@@ -28,7 +28,7 @@ public class BoardController {
     @GetMapping("/boardForm")
     public String boardForm() {
         log.info("boardForm 메서드 실행");
-        return "board/boardForm";
+        return "board/write";
     }
 
 
@@ -36,16 +36,14 @@ public class BoardController {
     public String findById(Model model, @PathVariable("bid") int bid) throws Exception {
         log.info("findById 메서드 실행");
         model.addAttribute("boardContent", boardService.findById(bid));
-        return "board/boardContent";
+        return "board/detail";
     }
 
 
-    @RequestMapping(value = "/editForm", method = RequestMethod.GET)
-    public String editForm(@RequestParam("bid") int bid, @RequestParam("mode") String mode, Model model) throws Exception {
+    @GetMapping("/editForm/{bid}")
+    public String editForm(@PathVariable("bid") int bid, Model model) throws Exception {
         model.addAttribute("boardContent", boardService.findById(bid));
-        model.addAttribute("mode", mode);
-        model.addAttribute("boardVO", new Board());
-        return "board/boardForm";
+        return "board/edit";
     }
 
     @RequestMapping(value = "/saveBoard", method = RequestMethod.POST)
