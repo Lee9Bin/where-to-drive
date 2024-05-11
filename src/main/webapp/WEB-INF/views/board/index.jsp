@@ -1,340 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="/WEB-INF/views/layout/header.jsp" %>
-
-<!DOCTYPE html>
-
-<html>
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-          crossorigin="anonymous">
-
-    <title>드라이브 어디갈카!</title>
-    <meta name="author" content="GYUB">
-    <meta name="description" content="Gyub World">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
-
-    <link rel="icon" href="/resources/img/icons8-car-roof-box-48.png">
-    <link rel="apple-touch-icon"
-          href="/resources/img/icons8-car-roof-box-48.png">
-    <!-- 구글폰트 적용 -->
-    <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap"
-            rel="stylesheet">
-    <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap"
-            rel="stylesheet">
-    <!-- css 리셋 한 후 메인 css호출 해야해 -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
-    <link rel="stylesheet" href="/resources/css/main.css">
-
-
-    <style>
-        .map_wrap, .map_wrap * {
-            margin: 0;
-            padding: 0;
-            font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-            font-size: 12px;
-        }
-
-        .map_wrap {
-            position: relative;
-            width: 100%;
-            height: 350px;
-        }
-
-        #category {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            border-radius: 5px;
-            border: 1px solid #909090;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-            background: #fff;
-            overflow: hidden;
-            z-index: 2;
-        }
-
-        #category li {
-            float: left;
-            list-style: none;
-            width: 50px;
-            px;
-            border-right: 1px solid #acacac;
-            padding: 6px 0;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        #category li.on {
-            background: #eee;
-        }
-
-        #category li:hover {
-            background: #ffe6e6;
-            border-left: 1px solid #acacac;
-            margin-left: -1px;
-        }
-
-        #category li:last-child {
-            margin-right: 0;
-            border-right: 0;
-        }
-
-        #category li span {
-            display: block;
-            margin: 0 auto 3px;
-            width: 27px;
-            height: 28px;
-        }
-
-        #category li .category_bg {
-            background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;
-        }
-
-        #category li .bank {
-            background-position: -10px 0;
-        }
-
-        #category li .mart {
-            background-position: -10px -36px;
-        }
-
-        #category li .pharmacy {
-            background-position: -10px -72px;
-        }
-
-        #category li .oil {
-            background-position: -10px -108px;
-        }
-
-        #category li .cafe {
-            background-position: -10px -144px;
-        }
-
-        #category li .store {
-            background-position: -10px -180px;
-        }
-
-        #category li.on .category_bg {
-            background-position-x: -46px;
-        }
-
-        .placeinfo_wrap {
-            position: absolute;
-            bottom: 28px;
-            left: -150px;
-            width: 300px;
-        }
-
-        .placeinfo {
-            position: relative;
-            width: 100%;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 10px;
-            background: #fff;
-        }
-
-        .placeinfo:nth-of-type(n) {
-            border: 0;
-            box-shadow: 0px 1px 2px #888;
-        }
-
-        .placeinfo_wrap .after {
-            content: '';
-            position: relative;
-            margin-left: -12px;
-            left: 50%;
-            width: 22px;
-            height: 12px;
-            background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
-        }
-
-        .placeinfo a, .placeinfo a:hover, .placeinfo a:active {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .placeinfo a, .placeinfo span {
-            display: block;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .placeinfo span {
-            margin: 5px 5px 0 5px;
-            cursor: default;
-            font-size: 13px;
-        }
-
-        .placeinfo .title {
-            font-weight: bold;
-            font-size: 14px;
-            border-radius: 6px 6px 0 0;
-            margin: -1px -1px 0 -1px;
-            padding: 10px;
-            color: #fff;
-            background: #d95050;
-            background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;
-        }
-
-        .placeinfo .tel {
-            color: #0f7833;
-        }
-
-        .placeinfo .jibun {
-            color: #999;
-            font-size: 11px;
-            margin-top: 0;
-        }
-    </style>
-
-    <!-- 글쓰기 버튼, 수정, 삭제 -->
-    <script>
-        $(document).on('click', '#btnWriteForm', function (e) {
-
-            e.preventDefault();
-
-
-            location.href = "${pageContext.request.contextPath}/boards/boardForm";
-
-        });
-
-        function fn_contentView(bid) {
-
-            var url = "${pageContext.request.contextPath}/boards/getBoardContent";
-
-            url = url + "?bid=" + bid;
-
-            location.href = url;
-
-        }
-
-        //이전 버튼 이벤트
-        function fn_prev(page, range, rangeSize, searchType, keyword) {
-            var page = ((range - 2) * rangeSize) + 1;
-            var range = range - 1;
-
-            var url = "${pageContext.request.contextPath}/boards/getBoardList";
-            url = url + "?page=" + page;
-            url = url + "&range=" + range;
-            url = url + "&searchType=" + $('#searchType').val();
-            url = url + "&keyword=" + keyword;
-            location.href = url;
-        }
-
-
-        //페이지 번호 클릭
-        function fn_pagination(page, range, rangeSize, searchType, keyword) {
-            var url = "${pageContext.request.contextPath}/boards/getBoardList";
-            url = url + "?page=" + page;
-            url = url + "&range=" + range;
-            url = url + "&searchType=" + searchType;
-            url = url + "&keyword=" + keyword;
-            location.href = url;
-        }
-
-
-        //다음 버튼 이벤트
-        function fn_next(page, range, rangeSize, searchType, keyword) {
-            var page = parseInt((range * rangeSize)) + 1;
-            var range = parseInt(range) + 1;
-
-            var url = "${pageContext.request.contextPath}/boards/getBoardList";
-            url = url + "?page=" + page;
-            url = url + "&range=" + range;
-            url = url + "&searchType=" + $('#searchType').val();
-            url = url + "&keyword=" + keyword;
-            location.href = url;
-        }
-
-        $(document).on('click', '#btnSearch', function (e) {
-
-            e.preventDefault();
-
-            var url = "${pageContext.request.contextPath}/boards/getBoardList";
-
-            url = url + "?searchType=" + $('#searchType').val();
-
-            url = url + "&keyword=" + $('#keyword').val();
-
-            location.href = url;
-
-            console.log(url);
-
-        });
-
-    </script>
-
-</head>
-
-<body>
-<!--  머리 부분 -->
-<header class="section">
-    <div class="inner clearfix">
-
-        <div class="menu-group float--left">
-            <div class="logo">
-                <a href="">Drive</a>
-            </div>
-            <ul class="main-menu">
-                <li><a href="http://localhost:8080/boards/getBoardList"
-                       target="_blank">게시판</a></li>
-                <li><a href="https://weather.naver.com/today/09620102"
-                       target="_blank">오늘의 날씨</a></li>
-
-            </ul>
-        </div>
-
-        <div class="sign-group float--right">
-            <div class="btn-group">
-                <c:if test="${member != null}">
-                    <a href="/member/logout" class="btn sign-in">로그아웃</a>
-                </c:if>
-                <c:if test="${member == null}">
-                    <a href="http://localhost:8080/member/login" class="btn sign-in">로그인</a>
-                </c:if>
-                <c:if test="${member == null}">
-                    <a href="http://localhost:8080/member/join" target="_blank"
-                       class="btn btn--primary sign-up">회원가입</a>
-                </c:if>
-            </div>
-            <form id="search-form" method="POST" action="">
-                <input type="text" id="search" class="input--text"
-                       placeholder="검색어를 입력하세요"> <input type="submit"
-                                                        value="submit">
-            </form>
-            <ul class="sub-menu">
-                <li><a href="https://ko-kr.facebook.com/" target="_blank">Facebook</a></li>
-                <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
-            </ul>
-
-        </div>
-
-    </div>
-</header>
-
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous">
+<%@include file="../layout/header.jsp"%>
 <article>
     <section class="section section--map">
         <div class="inner">
@@ -510,27 +182,85 @@
             </div>
         </div>
     </section>
-
-
 </article>
+<%@include file="../layout/footer.jsp"%>
 
-<footer class="section">
-    <div class="inner clearfix">
+<!-- 글쓰기 버튼, 수정, 삭제 -->
+<script>
+    $(document).on('click', '#btnWriteForm', function (e) {
 
-        <ul class="site-links float--right">
-            <li><a href="https://web.kangnam.ac.kr/" target="_blank">강남대학교</a></li>
-            <li><a href="https://developers.kakao.com/" target="_blank">Kakao
-                Developer</a></li>
-        </ul>
+        e.preventDefault();
 
-        <ul class="site-links float--left">
-            <li>소프트웨어응용학부 201704071 이규빈</li>
-        </ul>
 
-        <a href="#" class="logo"> </a>
+        location.href = "${pageContext.request.contextPath}/boards/boardForm";
 
-    </div>
-</footer>
+    });
+
+    function fn_contentView(bid) {
+
+        var url = "${pageContext.request.contextPath}/boards/getBoardContent";
+
+        url = url + "?bid=" + bid;
+
+        location.href = url;
+
+    }
+
+    //이전 버튼 이벤트
+    function fn_prev(page, range, rangeSize, searchType, keyword) {
+        var page = ((range - 2) * rangeSize) + 1;
+        var range = range - 1;
+
+        var url = "${pageContext.request.contextPath}/boards/getBoardList";
+        url = url + "?page=" + page;
+        url = url + "&range=" + range;
+        url = url + "&searchType=" + $('#searchType').val();
+        url = url + "&keyword=" + keyword;
+        location.href = url;
+    }
+
+
+    //페이지 번호 클릭
+    function fn_pagination(page, range, rangeSize, searchType, keyword) {
+        var url = "${pageContext.request.contextPath}/boards/getBoardList";
+        url = url + "?page=" + page;
+        url = url + "&range=" + range;
+        url = url + "&searchType=" + searchType;
+        url = url + "&keyword=" + keyword;
+        location.href = url;
+    }
+
+
+    //다음 버튼 이벤트
+    function fn_next(page, range, rangeSize, searchType, keyword) {
+        var page = parseInt((range * rangeSize)) + 1;
+        var range = parseInt(range) + 1;
+
+        var url = "${pageContext.request.contextPath}/boards/getBoardList";
+        url = url + "?page=" + page;
+        url = url + "&range=" + range;
+        url = url + "&searchType=" + $('#searchType').val();
+        url = url + "&keyword=" + keyword;
+        location.href = url;
+    }
+
+    $(document).on('click', '#btnSearch', function (e) {
+
+        e.preventDefault();
+
+        var url = "${pageContext.request.contextPath}/boards/getBoardList";
+
+        url = url + "?searchType=" + $('#searchType').val();
+
+        url = url + "&keyword=" + $('#keyword').val();
+
+        location.href = url;
+
+        console.log(url);
+
+    });
+
+</script>
 
 <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=67db8676f9e68a4cfa0568a0cd5a8115&libraries=services"></script>

@@ -1,155 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <title>드라이브 어디갈Car!</title>
-
-  <meta name="author" content="GYUB">
-  <meta name="description" content="Gyub World">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
-
-  <link rel="icon" href="resources/img/icons8-car-roof-box-48.png">
-  <link rel="apple-touch-icon"
-        href="resources/img/icons8-car-roof-box-48.png">
-  <!-- 구글폰트 적용 -->
-  <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap"
-          rel="stylesheet">
-  <!-- css 리셋 한 후 메인 css호출 해야해 -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
-  <link rel="stylesheet" href="resources/css/main.css">
-  <style>
-    .placeinfo_wrap {
-      position: absolute;
-      bottom: 28px;
-      left: -150px;
-      width: 300px;
-    }
-
-    .placeinfo {
-      position: relative;
-      width: 100%;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 10px;
-      background: #fff;
-    }
-
-    .placeinfo:nth-of-type(n) {
-      border: 0;
-      box-shadow: 0px 1px 2px #888;
-    }
-
-    .placeinfo_wrap .after {
-      content: '';
-      position: relative;
-      margin-left: -12px;
-      left: 50%;
-      width: 22px;
-      height: 12px;
-      background:
-              url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
-    }
-
-    .placeinfo a, .placeinfo a:hover, .placeinfo a:active {
-      color: #fff;
-      text-decoration: none;
-    }
-
-    .placeinfo a, .placeinfo span {
-      display: block;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-
-    .placeinfo span {
-      margin: 5px 5px 0 5px;
-      cursor: default;
-      font-size: 13px;
-    }
-
-    .placeinfo .title {
-      font-weight: bold;
-      font-size: 14px;
-      border-radius: 6px 6px 0 0;
-      margin: -1px -1px 0 -1px;
-      padding: 10px;
-      color: #fff;
-      background: #d95050;
-      background: #d95050
-      url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png)
-      no-repeat right 14px center;
-    }
-
-    .placeinfo .tel {
-      color: #0f7833;
-    }
-
-    .placeinfo .jibun {
-      color: #999;
-      font-size: 11px;
-      margin-top: 0;
-    }
-  </style>
-</head>
-<body>
+<%@include file="layout/header.jsp"%>
 <div class="body__container">
-  <!-- 헤더 -->
-  <header class="section">
-    <div class="inner clearfix">
-
-      <div class="menu-group float--left">
-        <div class="logo">
-          <a href="">Drive</a>
-        </div>
-        <ul class="main-menu">
-          <li><a href="http://localhost:8080/boards" style="margin-bottom: 3px;">게시판</a></li>
-          <li><a href="https://weather.naver.com/today/09620102"
-                 target="_blank" style="margin-bottom: 3px;">오늘의 날씨</a></li>
-        </ul>
-        <!-- 구글 검색창 -->
-        <script async
-                src="https://cse.google.com/cse.js?cx=76038bc9cb5644c05"></script>
-        <div class="gcse-searchbox-only"></div>
-      </div>
-
-      <div class="sign-group float--right">
-        <div class="btn-group">
-          <c:if test="${member != null}">
-            <span style="padding-top: 8px;">${member.memberId}님 환영합니다.</span>
-            <a href="/member/logout" class="btn sign-in"
-               style="margin-left: 5px;">로그아웃</a>
-          </c:if>
-
-          <c:if test="${member == null}">
-            <a href="http://localhost:8080/member/login" class="btn sign-in">로그인</a>
-          </c:if>
-          <c:if test="${member == null}">
-            <a href="http://localhost:8080/member/join" target="_blank"
-               class="btn btn--primary sign-up">회원가입</a>
-          </c:if>
-        </div>
-        <form id="search-form" method="POST" action="">
-          <!-- <input type="text" id="search" class="input--text"
-              placeholder="검색어를 입력하세요"> <input type="submit"
-              value="submit"> -->
-        </form>
-        <ul class="sub-menu">
-          <li><a href="https://ko-kr.facebook.com/" target="_blank">Facebook</a></li>
-          <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
-        </ul>
-      </div>
-    </div>
-  </header>
-
   <!--visual-->
   <section class="section section--visual">
     <div class="inner">
@@ -160,23 +13,6 @@
           번거로우셨죠!&nbsp;여기서 소통도 하고 정보도 얻어가세요!</div>
 
       </div>
-      <!--   원래 페이지에 있던 로그인 회원가입
-      <form id="sign-form" method="POST" action="">
-          <ul>
-              <li><input type="text" class="input--text"
-                  placeholder="이름을 입력하세요."></li>
-                <li><input type="email" class="input--text"
-                  placeholder="이메일을 입력하세요."></li>
-              <li><input type="password" class="input--text"
-                  placeholder="비밀번호를 입력하세요.">
-                  <p class="caption">영문, 숫자를 조합하여 7자리 이상을 사용하세요.</p></li>
-              <li>
-                  <button type="submit" class="btn btn--primary">Sign up</button>
-                  <p class="caption">가입하세요 버튼을 투르면 서비스 및 개인 정보 보호 정책에 대한 동의 약관을
-                      이메일 계정으로 보내드립니다.</p>
-              </li>
-          </ul>
-      </form>-->
     </div>
   </section>
 
@@ -211,26 +47,7 @@
 
     </div>
   </section>
-
-  <!--footer-->
-  <footer class="section">
-    <div class="inner clearfix">
-
-      <ul class="site-links float--right">
-        <li><a href="https://web.kangnam.ac.kr/" target="_blank">강남대학교</a></li>
-        <li><a href="https://developers.kakao.com/" target="_blank">Kakao
-          Developer</a></li>
-      </ul>
-
-      <ul class="site-links float--left">
-        <li>소프트웨어응용학부 201704071 이규빈</li>
-      </ul>
-
-      <a href="#" class="logo"> </a>
-
-    </div>
-  </footer>
-
+  <%@include file="layout/footer.jsp"%>
 </div>
 <!-- 카카오지도 부분 -->
 <script type="text/javascript"

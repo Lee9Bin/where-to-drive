@@ -18,9 +18,9 @@
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
 
-    <link rel="icon" href="resources/img/icons8-car-roof-box-48.png">
+    <link rel="icon" href="/resources/img/icons8-car-roof-box-48.png">
     <link rel="apple-touch-icon"
-          href="resources/img/icons8-car-roof-box-48.png">
+          href="/resources/img/icons8-car-roof-box-48.png">
     <!-- 구글폰트 적용 -->
     <link
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap"
@@ -45,10 +45,10 @@
                 <li><a href="https://weather.naver.com/today/09620102"
                        target="_blank" style="margin-bottom: 3px;">오늘의 날씨</a></li>
             </ul>
-            <!-- 구글 검색창 -->
-            <script async
-                    src="https://cse.google.com/cse.js?cx=76038bc9cb5644c05"></script>
-            <div class="gcse-searchbox-only"></div>
+<%--            <!-- 구글 검색창 -->--%>
+<%--            <script async--%>
+<%--                    src="https://cse.google.com/cse.js?cx=76038bc9cb5644c05"></script>--%>
+<%--            <div class="gcse-searchbox-only"></div>--%>
         </div>
 
         <div class="sign-group float--right">
@@ -68,9 +68,9 @@
                 </c:if>
             </div>
             <form id="search-form" method="POST" action="">
-                <!-- <input type="text" id="search" class="input--text"
+                 <input type="text" id="search" class="input--text"
                     placeholder="검색어를 입력하세요"> <input type="submit"
-                    value="submit"> -->
+                    value="submit">
             </form>
             <ul class="sub-menu">
                 <li><a href="https://ko-kr.facebook.com/" target="_blank">Facebook</a></li>
