@@ -40,20 +40,18 @@ public class BoardController {
     }
 
 
-    @GetMapping("/editForm/{bid}")
+    @GetMapping("/edit/{bid}")
     public String editForm(@PathVariable("bid") int bid, Model model) throws Exception {
+        log.info("bid {}",bid
+        );
         model.addAttribute("boardContent", boardService.findById(bid));
         return "board/edit";
     }
 
-    @RequestMapping(value = "/saveBoard", method = RequestMethod.POST)
-    public String saveBoard(@ModelAttribute("boardVO") Board boardVO, @RequestParam("mode") String mode, RedirectAttributes rttr) throws Exception {
-
-        if (mode.equals("edit")) {
-            boardService.update(boardVO);
-        } else {
-            boardService.insert(boardVO);
-        }
+    @PostMapping("/edit")
+    public String saveBoard(@ModelAttribute Board boardVO) throws Exception {
+        log.info(boardVO.toString());
+        boardService.update(boardVO);
         return "redirect:/boards";
     }
 

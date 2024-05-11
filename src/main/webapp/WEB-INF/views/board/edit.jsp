@@ -2,7 +2,6 @@
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/layout/header.jsp"%>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -18,8 +17,8 @@
 <article>
     <div class="container" role="main">
         <h2>게시글을 수정하세요!</h2>
-        <form id="form" role="form" method="post" action="${pageContext.request.contextPath}/boards/saveBoard">
-            <input type="hidden" name="mode" />
+        <form id="form" role="form" method="post" action="/boards/edit">
+            <input type="hidden" name="bid" value="${boardContent.bid}" />
             <div class="mb-3">
                 <label for="title">제목</label>
                 <input type="text" name="title" id="title" class="form-control" placeholder="제목을 입력해 주세요" value="${boardContent.title}"/>
@@ -36,11 +35,9 @@
                 <label for="tag">TAG</label>
                 <input type="text" name="tag" id="tag" class="form-control" placeholder="태그를 입력해 주세요" value="${boardContent.tag}"/>
             </div>
+            <button type="submit" class="btn" id="edit">수정</button>
+            <button type="button" class="btn" id="list">목록</button>
         </form>
-        <div>
-            <button type="button" class="btn" id="btnSave">저장</button>
-            <button type="button" class="btn" id="btnList">목록</button>
-        </div>
     </div>
 </article>
 <!-- jQuery -->
@@ -49,26 +46,12 @@
         crossorigin="anonymous">
 </script>
 <script>
-    $(document).ready(function() {
-        var mode = '<c:out value="${mode}"/>';
-        if (mode == 'edit') {
-            //입력 폼 셋팅
-            $("#reg_id").prop('readonly', true);
-            $("input:hidden[name='bid']").val(<c:out value="${boardContent.bid}"/>);
-            $("input:hidden[name='mode']").val('<c:out value="${mode}"/>');
-            $("#reg_id").val('<c:out value="${boardContent.reg_id}"/>');
-            $("#title").val('<c:out value="${boardContent.title}"/>');
-            $("#content").val('<c:out value="${boardContent.content}"/>');
-            $("#tag").val('<c:out value="${boardContent.tag}"/>');
-        }
-    });
-
-    $(document).on('click', '#btnSave', function(e) {
+    $(document).on('click', '#edit', function(e) {
         e.preventDefault();
         $("#form").submit();
     });
 
-    $(document).on('click', '#btnList', function(e) {
+    $(document).on('click', '#list', function(e) {
         e.preventDefault();
         location.href = "${pageContext.request.contextPath}/boards/getBoardList";
     });

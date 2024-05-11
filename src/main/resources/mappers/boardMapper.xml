@@ -80,7 +80,7 @@
     <update id="update"
             parameterType="com.gyub.WhereToDrive.board.entity.Board">
         UPDATE TBL_BOARD
-        SET CATE_CD = #{cate_cd},
+        SET CATE_CD = now(),
             TITLE   = #{title},
             CONTENT = #{content},
             TAG     = #{tag},
