@@ -5,7 +5,7 @@
 
 <mapper namespace="com.gyub.WhereToDrive.board.mapper.BoardMapper">
 
-    <select id="findByAll" resultType="com.gyub.WhereToDrive.board.entity.Board">
+    <select id="findByAll" resultType="Board">
         SELECT
         BID, CATE_CD, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID,
         REG_DT, EDIT_DT
@@ -48,8 +48,8 @@
 
 
     <select id="findById"
-            resultType="com.gyub.WhereToDrive.board.entity.Board"
-            parameterType="com.gyub.WhereToDrive.board.entity.Board">
+            resultType="Board"
+            parameterType="Board">
         SELECT BID,
                CATE_CD,
                TITLE,
@@ -64,7 +64,7 @@
     </select>
 
     <insert id="insert"
-            parameterType="com.gyub.WhereToDrive.board.entity.Board">
+            parameterType="Board">
         INSERT INTO board (TITLE, CONTENT, TAG,
                                VIEW_CNT, REG_ID, REG_DT, EDIT_DT)
         VALUES (#{title},
@@ -78,7 +78,7 @@
 
 
     <update id="update"
-            parameterType="com.gyub.WhereToDrive.board.entity.Board">
+            parameterType="Board">
         UPDATE board
         SET CATE_CD = now(),
             TITLE   = #{title},
@@ -97,7 +97,7 @@
 
 
     <update id="upHit"
-            parameterType="com.gyub.WhereToDrive.board.entity.Board">
+            parameterType="Board">
 
         UPDATE board
         SET VIEW_CNT = VIEW_CNT + 1
