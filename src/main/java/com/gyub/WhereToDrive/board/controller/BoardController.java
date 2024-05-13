@@ -2,7 +2,7 @@ package com.gyub.WhereToDrive.board.controller;
 
 import com.gyub.WhereToDrive.board.entity.Board;
 import com.gyub.WhereToDrive.board.service.BoardService;
-import com.gyub.WhereToDrive.member.entity.MemberVO;
+import com.gyub.WhereToDrive.member.entity.User;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -65,7 +65,7 @@ public class BoardController {
 
     @PostMapping(value = "/delete/{bid}")
     public String deleteBoard(@PathVariable("bid") int bid, HttpSession session) throws Exception {
-        log.info(((MemberVO)session.getAttribute("member")).getMemberId());
+        log.info(((User)session.getAttribute("member")).getId());
         boardService.delete(bid);
         return "redirect:/boards";
     }

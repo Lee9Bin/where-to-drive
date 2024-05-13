@@ -3,7 +3,7 @@ package com.gyub.WhereToDrive;
 import java.util.Locale;
 
 import com.gyub.WhereToDrive.member.service.MemberService;
-import com.gyub.WhereToDrive.member.entity.MemberVO;
+import com.gyub.WhereToDrive.member.entity.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
@@ -27,11 +27,11 @@ public class MemberController {
 	MemberService service;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
+	public String login(User user, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
 		logger.info("post login");
 
 		HttpSession session = req.getSession();
-		MemberVO login = service.login(vo);
+		User login = service.login(user);
 
 		if (login == null) {
 			session.setAttribute("member", null);
@@ -65,10 +65,10 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String postRegister(MemberVO vo, Model model) throws Exception {
+	public String postRegister(User user, Model model) throws Exception {
 		logger.info("post join");
 
-		int result = service.idChk(vo);
+		int result = service.idChk(user);
 		try {
 			if (result == 1) {
 				System.out.println("���̵� �ߺ��Ǿ���.");
@@ -79,7 +79,7 @@ public class MemberController {
 				System.out.println("ȸ������ ����");
 				model.addAttribute("msg","ȸ������ �����Դϴ�.");
 		        model.addAttribute("url","/member/login");
-				service.register(vo);
+				service.register(user);
 				return "/member/redirect";
 			}
 			// ��⿡��~ �Էµ� ���̵� �����Ѵٸ� -> �ٽ� ȸ������ �������� ���ư���
@@ -94,9 +94,9 @@ public class MemberController {
 	// ���̵� �ߺ� üũ
 	@ResponseBody
 	@RequestMapping(value = "/idChk", method = RequestMethod.POST)
-	public int idChk(MemberVO vo) throws Exception {
+	public int idChk(User user) throws Exception {
 		logger.info("IdChk() ����");
-		int result = service.idChk(vo);
+		int result = service.idChk(user);
 		return result;
 	}
 

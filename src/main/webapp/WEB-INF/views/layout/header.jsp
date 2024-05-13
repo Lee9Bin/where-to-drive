@@ -54,7 +54,7 @@
         <div class="sign-group float--right">
             <div class="btn-group">
                 <c:if test="${member != null}">
-                    <span style="padding-top: 8px;">${member.memberId}님 환영합니다.</span>
+                    <span style="padding-top: 8px;">${member.id}님 환영합니다.</span>
                     <a href="/member/logout" class="btn sign-in"
                        style="margin-left: 5px;">로그아웃</a>
                 </c:if>
