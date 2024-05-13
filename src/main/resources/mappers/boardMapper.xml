@@ -10,7 +10,7 @@
         BID, CATE_CD, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID,
         REG_DT, EDIT_DT
         FROM
-        tbl_board
+        board
 <!--        <trim prefix="WHERE" prefixOverrides="AND|OR">-->
 <!--            <if test="searchType=='title' and keyword != null and keyword != '' ">-->
 <!--                AND TITLE like CONCAT('%', #{keyword}, '%')-->
@@ -29,7 +29,7 @@
         SELECT
         count(*) as listCnt
         FROM
-        TBL_BOARD
+        board
 <!--        <trim prefix="WHERE" prefixOverrides="AND|OR">-->
 
 <!--            <if test="keyword != null and keyword != '' ">-->
@@ -59,13 +59,13 @@
                REG_ID,
                REG_DT,
                EDIT_DT
-        FROM TBL_BOARD
+        FROM board
         WHERE BID = #{bid}
     </select>
 
     <insert id="insert"
             parameterType="com.gyub.WhereToDrive.board.entity.Board">
-        INSERT INTO TBL_BOARD (TITLE, CONTENT, TAG,
+        INSERT INTO board (TITLE, CONTENT, TAG,
                                VIEW_CNT, REG_ID, REG_DT, EDIT_DT)
         VALUES (#{title},
                 #{content},
@@ -79,7 +79,7 @@
 
     <update id="update"
             parameterType="com.gyub.WhereToDrive.board.entity.Board">
-        UPDATE TBL_BOARD
+        UPDATE board
         SET CATE_CD = now(),
             TITLE   = #{title},
             CONTENT = #{content},
@@ -91,7 +91,7 @@
 
     <delete id="delete" parameterType="int">
         DELETE
-        FROM TBL_BOARD
+        FROM board
         WHERE BID = #{bid}
     </delete>
 
@@ -99,7 +99,7 @@
     <update id="upHit"
             parameterType="com.gyub.WhereToDrive.board.entity.Board">
 
-        UPDATE TBL_BOARD
+        UPDATE board
         SET VIEW_CNT = VIEW_CNT + 1
 
         WHERE BID =
