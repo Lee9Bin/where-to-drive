@@ -5,6 +5,17 @@
 
 <mapper namespace="com.gyub.WhereToDrive.board.mapper.BoardMapper">
 
+<!--    <resultMap type="board" id="article">-->
+<!--        <result column="BID" property="articleNo"/>-->
+<!--        <result column="CATE_CD" property="userId"/>-->
+<!--        <result column="TITLE" property="userName"/>-->
+<!--        <result column="CONTENT" property="subject"/>-->
+<!--        <result column="TAG" property="content"/>-->
+<!--        <result column="VIEW_CNT" property="hit"/>-->
+<!--        <result column="reg_dt" property="registerTime"/>-->
+<!--    </resultMap>-->
+
+
     <select id="findByAll" resultType="Board">
         SELECT
         BID, CATE_CD, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID,
@@ -105,6 +116,34 @@
         WHERE BID =
               #{bid}
     </update>
+
+    <sql id="search">
+        <if test="word != null and word != ''">
+            <if test="key == 'subject'">
+                and subject like concat('%', #{word}, '%')
+            </if>
+            <if test="key != 'subject'">
+                and ${key} = #{word}
+            </if>
+        </if>
+    </sql>
+
+    <select id="getTotalBoardCount" parameterType="map" resultType="int">
+        select count(BID)
+        from board
+        <where>
+            <include refid="search"></include>
+        </where>
+    </select>
+    <select id="listBoard" parameterType="map" resultType="board">
+        select b.bid, b.REG_ID, b.TITLE, b.content, b.VIEW_CNT, b.REG_DT
+        from board b
+           , user m
+        where b.REG_ID = m.id
+        <include refid="search"></include>
+        order by b.BID desc
+        limit #{start}, #{listsize}
+    </select>
 
 
 </mapper>
