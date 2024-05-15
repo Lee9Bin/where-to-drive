@@ -1,177 +1,50 @@
 package com.gyub.WhereToDrive.common;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Pagination {
-
-	private int listSize = 10;
-
-	private int rangeSize = 5;
-
-	private int page;
-
-	private int range;
-
-	private int listCnt;
-
-	private int pageCnt;
-
-	private int startPage;
-
-	private int startList;
-
-	private int endPage;
-
-	private boolean prev;
-
-	private boolean next;
-
-	public int getRangeSize() {
-
-		return rangeSize;
-
-	}
-
-	public int getPage() {
-
-		return page;
-
-	}
-
-	public void setPage(int page) {
-
-		this.page = page;
-
-	}
-
-	public int getRange() {
-
-		return range;
-
-	}
-
-	public void setRange(int range) {
-
-		this.range = range;
-
-	}
-
-	public int getStartPage() {
-
-		return startPage;
-
-	}
-
-	public void setStartPage(int startPage) {
-
-		this.startPage = startPage;
-
-	}
-
-	public int getEndPage() {
-
-		return endPage;
-
-	}
-
-	public void setEndPage(int endPage) {
-
-		this.endPage = endPage;
-
-	}
-
-	public boolean isPrev() {
-
-		return prev;
-
-	}
-
-	public void setPrev(boolean prev) {
-
-		this.prev = prev;
-
-	}
-
-	public boolean isNext() {
-
-		return next;
-
-	}
-
-	public void setNext(boolean next) {
-
-		this.next = next;
-
-	}
-
-	public int getListSize() {
-
-		return listSize;
-
-	}
-
-	public void setListSize(int listSize) {
-
-		this.listSize = listSize;
-
-	}
-
-	public int getListCnt() {
-
-		return listCnt;
-
-	}
-
-	public void setListCnt(int listCnt) {
-
-		this.listCnt = listCnt;
-
-	}
-
-	public int getStartList() {
-
-		return startList;
-
-	}
-
-	public void pageInfo(int page, int range, int listCnt) {
-
-		this.page = page;
-
-		this.range = range;
-
-		this.listCnt = listCnt;
-
-		// ��ü ��������
-
-		this.pageCnt = (int) Math.ceil((double)listCnt/listSize);
-
-		// ���� ������
-
-		this.startPage = (range - 1) * rangeSize + 1;
-
-		// �� ������
-
-		this.endPage = range * rangeSize;
-
-		// �Խ��� ���۹�ȣ
-
-		this.startList = (page - 1) * listSize;
-
-		// ���� ��ư ����
-
-		this.prev = range == 1 ? false : true;
-
-		// ���� ��ư ����
-
-		this.next = endPage > pageCnt ? false : true;
-
-		if (this.endPage > this.pageCnt) {
-
-			this.endPage = this.pageCnt;
-
-			this.next = false;
-
-		}
-
-	}
+    private boolean startRange; // 현재 페이지가 이전이 눌려지지 않는 범위의 페이지 체크
+    private boolean endRange; // 현재 페이지가 다음이 눌려지지 않는 범위의 페이지 체크
+    private int totalCount; // 총 게시글 갯수
+    private int newCount; // 새글 갯수
+    private int totalPageCount; // 총 페이지 갯수
+    private int currentPage; // 현재 페이지 번호
+    private int naviSize; // 네비게이션 사이즈
+    private int countPerPage; // 페이지당 글 갯수
+    private String navigator;
+
+    public void makeNavigator() {
+        int startPage = (currentPage - 1) / naviSize * naviSize + 1;
+        int endPage = startPage + naviSize - 1;
+        if (totalPageCount < endPage)
+            endPage = totalPageCount;
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("		<ul class=\"pagination  justify-content-center\"> \n");
+        builder.append("			<li class=\"page-item\" data-pg=\"1\"> \n");
+        builder.append("				<a href=\"#\" class=\"page-link\">최신</a> \n");
+        builder.append("			</li> \n");
+        builder.append("			<li class=\"page-item\" data-pg=\"" + (this.startRange ? 1 : (startPage - 1)) + "\"> \n");
+        builder.append("				<a href=\"#\" class=\"page-link\">이전</a> \n");
+        builder.append("			</li> \n");
+        for (int i = startPage; i <= endPage; i++) {
+            builder.append("			<li class=\"" + (currentPage == i ? "page-item active" : "page-item") + "\" data-pg=\"" + i + "\"><a href=\"#\" class=\"page-link\">" + i + "</a></li> \n");
+        }
+        builder.append("			<li class=\"page-item\" data-pg=\"" + (this.endRange ? endPage : (endPage + 1)) + "\"> \n");
+        builder.append("				<a href=\"#\" class=\"page-link\">다음</a> \n");
+        builder.append("			</li> \n");
+        builder.append("			<li class=\"page-item\" data-pg=\"" + totalPageCount + "\"> \n");
+        builder.append("				<a href=\"#\" class=\"page-link\">마지막</a> \n");
+        builder.append("			</li> \n");
+        builder.append("		</ul> \n");
+        this.navigator = builder.toString();
+    }
 
 }
