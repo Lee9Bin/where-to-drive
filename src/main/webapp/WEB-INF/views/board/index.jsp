@@ -8,21 +8,52 @@
       crossorigin="anonymous">
 <link rel="stylesheet"
       href="../../../resources/css/map/categoyMap.css"
-      >
-<%@include file="../layout/header.jsp"%>
+>
+<%@include file="../layout/header.jsp" %>
 <article>
     <section class="section section--map">
-        <div class="inner">
+        <div class="mt-5">
             <div class="summary">
-                <div class="summary__title">여러분들의 다양한 드라이브 경험을 알려주세요!</div>
             </div>
-            <div class="container">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">NO</th>
-                            <th scope="col">글 제목</th>
+            <div class="row justify-content-center">
+                <div class="summary__title">여러분들의 다양한 드라이브 경험을 알려주세요!</div>
+                <div class="col-lg-8 col-md-10 col-sm-12">
+                    <h2 class="my-3 py-3 shadow-sm bg-light text-center">
+                        <mark class="sky">글목록</mark>
+                    </h2>
+                </div>
+                <div class="col-lg-8 col-md-10 col-sm-12">
+                    <div class="row align-self-center mb-2">
+                        <div class="col-md-2 text-start">
+                            <button type="button" id="btn-mv-register" class="btn btn-sm">
+                                글쓰기
+                            </button>
+                        </div>
+                        <div class="col-md-7 offset-3">
+                            <form class="d-flex" id="form-search" action="">
+                                <input type="hidden" name="pgno" value="1"/>
+                                <select
+                                        name="key"
+                                        id="key"
+                                        class="form-select form-select-sm mr-1 w-50 form-control"
+                                        aria-label="검색조건"
+                                >
+                                    <option selected>검색조건</option>
+                                    <option value="subject">제목</option>
+                                    <option value="userid">작성자</option>
+                                </select>
+                                <div class="input-group">
+                                    <input type="text" name="word" id="word" class="form-control" placeholder="검색어..."/>
+                                    <button id="btn-search" class="btn ml-1" type="button">검색</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr class="text-center">
+                            <th scope="col">글번호</th>
+                            <th scope="col">제목</th>
                             <th scope="col">작성자</th>
                             <th scope="col">조회수</th>
                             <th scope="col">작성일</th>
@@ -38,13 +69,13 @@
                             <c:when test="${!empty boardList}">
                                 <c:forEach var="list" items="${boardList}" varStatus="status">
                                     <tr>
-                                        <td><c:out value="${status.index + 1}" /></td>
+                                        <td><c:out value="${status.index + 1}"/></td>
                                         <td><a href="/boards/${list.bid}">
-                                            <c:out value="${list.title}" />
+                                            <c:out value="${list.title}"/>
                                         </a></td>
-                                        <td><c:out value="${list.reg_id}" /></td>
-                                        <td><c:out value="${list.view_cnt}" /></td>
-                                        <td><c:out value="${list.reg_dt}" /></td>
+                                        <td><c:out value="${list.reg_id}"/></td>
+                                        <td><c:out value="${list.view_cnt}"/></td>
+                                        <td><c:out value="${list.reg_dt}"/></td>
                                     </tr>
                                 </c:forEach>
                             </c:when>
@@ -53,78 +84,20 @@
                     </table>
                 </div>
             </div>
-            <div>
-                    <c:if test="${member.memberId != null}">
-                        <button type="button" class="btn sign-in" id="btnWriteForm"
-                                style="margin-bottom: 10px;">글쓰기
-                        </button>
-                    </c:if>
-                </div>
-
-                <!-- pagination{s} -->
-                <div id="paginationBox">
-                    <ul class="pagination">
-                        <c:if test="${pagination.prev}">
-                            <li class="page-item"><a class="page-link" href="#"
-                                                     onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType }', '${search.keyword }' )">Previous</a>
-                            </li>
-                        </c:if>
-                        <c:forEach begin="${pagination.startPage}"
-                                   end="${pagination.endPage}" var="idx">
-                            <li
-                                    class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
-                                    class="page-link" href="#"
-                                    onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType }', '${search.keyword }')">
-                                    ${idx} </a></li>
-                        </c:forEach>
-                        <c:if test="${pagination.next}">
-                            <li class="page-item"><a class="page-link" href="#"
-                                                     onClick="fn_next('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType }', '${search.keyword }')">Next</a>
-                            </li>
-                        </c:if>
-                    </ul>
-                </div>
-
-                <!-- pagination{e} -->
-
-                <!-- search{s} -->
-
-                <div class="form-group row justify-content-center">
-
-                    <div class="w100" style="padding-right: 10px">
-
-                        <select class="form-control form-control-sm" name="searchType"
-                                id="searchType" style="margin-top: 10px">
-
-                            <option value="title">제목</option>
-                            <option value="reg_id">작성자</option>
-
-                        </select>
-
-                    </div>
-
-                    <div class="w300" style="padding-right: 10px">
-
-                        <input type="text" class="form-control form-control-sm"
-                               name="keyword" id="keyword" style="margin-top: 10px">
-
-                    </div>
-
-                    <div>
-
-                        <button class="btn sign-in" name="btnSearch" id="btnSearch"
-                                style="margin-top: 10px">검색
-                        </button>
-
-                    </div>
-
-                </div>
-
-                <!-- search{e} -->
-
-
-            </div>
+            ${navigation.navigator}
         </div>
+        <form id="form-param" method="get" action="">
+            <input type="hidden" name="pgno" id="pgno" value="${pgno}">
+            <input type="hidden" name="key" value="${key}">
+            <input type="hidden" name="word" value="${word}">
+        </form>
+        <form id="form-no-param" method="get" action="${root}/article/view">
+            <input type="hidden" name="pgno" value="${pgno}">
+            <input type="hidden" name="key" value="${key}">
+            <input type="hidden" name="word" value="${word}">
+            <input type="hidden" id="articleno" name="articleno" value="">
+        </form>
+        <!-- pagination{e} -->
     </section>
 
     <!--map-->
@@ -165,7 +138,38 @@
         </div>
     </section>
 </article>
-<%@include file="../layout/footer.jsp"%>
+<%@include file="../layout/footer.jsp" %>
+<script>
+    let titles = document.querySelectorAll(".article-title");
+    titles.forEach(function (title) {
+        title.addEventListener("click", function () {
+            document.querySelector("#articleno").value = this.getAttribute("data-no");
+            document.querySelector("#form-no-param").submit();
+        });
+    });
+
+    document.querySelector("#btn-mv-register").addEventListener("click", function () {
+        let form = document.querySelector("#form-param");
+        form.setAttribute("action", "${root}/boards/write");
+        form.submit();
+    });
+
+    document.querySelector("#btn-search").addEventListener("click", function () {
+        let form = document.querySelector("#form-search");
+        form.setAttribute("action", "/boards");
+        form.submit();
+    });
+
+    let pages = document.querySelectorAll(".page-link");
+    pages.forEach(function (page) {
+        page.addEventListener("click", function () {
+            document.querySelector("#pgno").value = this.parentNode.getAttribute("data-pg");
+            let form = document.querySelector("#form-param");
+            form.setAttribute("action", "/boards");
+            form.submit();
+        });
+    });
+</script>
 
 <!-- 글쓰기 버튼, 수정, 삭제 -->
 <script>

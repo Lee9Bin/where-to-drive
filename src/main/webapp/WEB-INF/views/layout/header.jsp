@@ -41,7 +41,7 @@
                 <a href="/">Drive</a>
             </div>
             <ul class="main-menu">
-                <li><a href="http://localhost:8080/boards" style="margin-bottom: 3px;">게시판</a></li>
+                <li><a href="http://localhost:8080/boards?pgno=1&key=&word=" style="margin-bottom: 3px;">게시판</a></li>
                 <li><a href="https://weather.naver.com/today/09620102"
                        target="_blank" style="margin-bottom: 3px;">오늘의 날씨</a></li>
             </ul>
