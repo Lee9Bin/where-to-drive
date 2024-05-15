@@ -2,6 +2,7 @@ package com.gyub.WhereToDrive.board.controller;
 
 import com.gyub.WhereToDrive.board.entity.Board;
 import com.gyub.WhereToDrive.board.service.BoardService;
+import com.gyub.WhereToDrive.common.Pagination;
 import com.gyub.WhereToDrive.member.entity.User;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,10 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
+import java.util.Map;
 
 
 @Slf4j
@@ -21,8 +26,15 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping
-    public String findByAll(Model model) throws Exception {
-        model.addAttribute("boardList", boardService.findByAll());
+    public String findByAll(@RequestParam Map<String, String> map, Model model) throws Exception {
+
+        List<Board> list = boardService.listArticle(map);
+        Pagination pagination = boardService.makePageNavigation(map);
+        model.addAttribute("boardList", list);
+        model.addAttribute("navigation", pagination);
+        model.addAttribute("pgno", map.get("pgno"));
+        model.addAttribute("key", map.get("key"));
+        model.addAttribute("word", map.get("word"));
         return "board/index";
     }
 

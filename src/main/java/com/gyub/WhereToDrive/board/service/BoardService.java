@@ -2,9 +2,11 @@ package com.gyub.WhereToDrive.board.service;
 
 
 import com.gyub.WhereToDrive.board.entity.Board;
+import com.gyub.WhereToDrive.common.Pagination;
 import com.gyub.WhereToDrive.common.Search;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BoardService {
 
@@ -14,6 +16,6 @@ public interface BoardService {
 	void update(Board boardVO) throws Exception;
 	void delete(int bid) throws Exception;
 
-	int getBoardListCnt(Search search) throws Exception;
-	List<Board> getBoardList(Search search);
+	Pagination makePageNavigation(Map<String, String> map) throws Exception;
+	List<Board> listArticle(Map<String, String> map) throws Exception;
 }

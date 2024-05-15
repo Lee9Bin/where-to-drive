@@ -4,7 +4,9 @@ import com.gyub.WhereToDrive.board.entity.Board;
 import com.gyub.WhereToDrive.common.Search;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 
 @Mapper
@@ -17,6 +19,6 @@ public interface BoardMapper {
     void delete(int bid) throws Exception;
     void upHit(int bid) throws Exception;
 
-    int getBoardListCnt(Search search) throws Exception;
-    List<Board> getBoardList(Search search);
+    int getTotalBoardCount(Map<String, Object> param) throws SQLException;
+    List<Board> listBoard(Map<String, Object> param) throws SQLException;
 }
