@@ -49,7 +49,7 @@ public class BoardServiceImpl implements BoardService {
         Pagination pageNavigation = new Pagination();
 
         int naviSize = 10;
-        int sizePerPage = 13;
+        int sizePerPage = 15;
         int currentPage = Integer.parseInt(map.get("pgno"));
 
         pageNavigation.setCurrentPage(currentPage);
@@ -82,9 +82,9 @@ public class BoardServiceImpl implements BoardService {
         param.put("key", key == null ? "" : key);
         param.put("word", map.get("word") == null ? "" : map.get("word"));
         int pgNo = Integer.parseInt(map.get("pgno") == null ? "1" : map.get("pgno"));
-        int start = pgNo *13 - 13;
+        int start = pgNo *15 - 15;
         param.put("start", start);
-        param.put("listsize", 13);
+        param.put("listsize", 15);
 
         return boardMapper.listBoard(param);
     }
