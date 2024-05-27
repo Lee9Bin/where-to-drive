@@ -33,19 +33,19 @@
                             <form class="d-flex" id="form-search" action="">
                                 <input type="hidden" name="pgno" value="1"/>
                                 <select
-                                        name="key"
-                                        id="key"
+                                        name="searchType"
+                                        id="searchType"
                                         class="form-select form-select-sm mr-1 w-50 form-control"
                                         aria-label="검색조건"
                                 >
                                     <option selected>검색조건</option>
-                                    <option value="subject">제목</option>
+                                    <option value="title">제목</option>
                                     <option value="userid">작성자</option>
                                 </select>
                                 <div class="input-group">
-                                    <input type="text" name="word" id="word" class="form-control" placeholder="검색어..."/>
-                                    <button id="btn-search" class="btn ml-1" type="button">검색</button>
+                                    <input type="text" name="keyword" id="word" class="form-control" placeholder="검색어..." value="${word}"/>
                                 </div>
+                                <button id="btn-search" class="btn ml-1" type="button">검색</button>
                             </form>
                         </div>
                     </div>
@@ -157,6 +157,7 @@
     document.querySelector("#btn-search").addEventListener("click", function () {
         let form = document.querySelector("#form-search");
         form.setAttribute("action", "/boards");
+        form.s
         form.submit();
     });
 
