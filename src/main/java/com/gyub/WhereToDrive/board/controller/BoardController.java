@@ -3,6 +3,7 @@ package com.gyub.WhereToDrive.board.controller;
 import com.gyub.WhereToDrive.board.entity.Board;
 import com.gyub.WhereToDrive.board.service.BoardService;
 import com.gyub.WhereToDrive.common.Pagination;
+import com.gyub.WhereToDrive.common.Search;
 import com.gyub.WhereToDrive.member.entity.User;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,7 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping
-    public String findByAll(@RequestParam Map<String, String> map, Model model) throws Exception {
+    public String findByAll(@RequestParam Map<String, String> map, @ModelAttribute Search search, Model model) throws Exception {
 
         List<Board> list = boardService.listArticle(map);
         Pagination pagination = boardService.makePageNavigation(map);
