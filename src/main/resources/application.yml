@@ -13,3 +13,10 @@ spring:
 mybatis:
   type-aliases-package: com.gyub.WhereToDrive.*.entity
   mapper-locations: mappers/**/*.xml
+
+
+logging:
+  level:
+    com:
+      gyub:
+        WhereToDrive: debug
