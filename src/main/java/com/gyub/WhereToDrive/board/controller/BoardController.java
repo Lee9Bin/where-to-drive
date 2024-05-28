@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
@@ -36,7 +35,7 @@ public class BoardController {
         model.addAttribute("pgno", map.get("pgno"));
         model.addAttribute("key", map.get("key"));
         model.addAttribute("word", map.get("word"));
-        return "board/index";
+        return "board/list";
     }
 
     @GetMapping("/boardForm")
