@@ -1,5 +1,5 @@
 /* 전체적인 설정 */
-.body__cotainer{
+body{
     /* 구글폰트 적용 */
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 16px;
