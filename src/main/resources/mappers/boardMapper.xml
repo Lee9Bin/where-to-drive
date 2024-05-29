@@ -5,15 +5,15 @@
 
 <mapper namespace="com.gyub.WhereToDrive.board.mapper.BoardMapper">
 
-<!--    <resultMap type="board" id="article">-->
-<!--        <result column="BID" property="articleNo"/>-->
-<!--        <result column="CATE_CD" property="userId"/>-->
-<!--        <result column="TITLE" property="userName"/>-->
-<!--        <result column="CONTENT" property="subject"/>-->
-<!--        <result column="TAG" property="content"/>-->
-<!--        <result column="VIEW_CNT" property="hit"/>-->
-<!--        <result column="reg_dt" property="registerTime"/>-->
-<!--    </resultMap>-->
+    <!--    <resultMap type="board" id="article">-->
+    <!--        <result column="BID" property="articleNo"/>-->
+    <!--        <result column="CATE_CD" property="userId"/>-->
+    <!--        <result column="TITLE" property="userName"/>-->
+    <!--        <result column="CONTENT" property="subject"/>-->
+    <!--        <result column="TAG" property="content"/>-->
+    <!--        <result column="VIEW_CNT" property="hit"/>-->
+    <!--        <result column="reg_dt" property="registerTime"/>-->
+    <!--    </resultMap>-->
 
 
     <select id="findByAll" resultType="Board">
@@ -22,18 +22,18 @@
         REG_DT, EDIT_DT
         FROM
         board
-<!--        <trim prefix="WHERE" prefixOverrides="AND|OR">-->
-<!--            <if test="searchType=='title' and keyword != null and keyword != '' ">-->
-<!--                AND TITLE like CONCAT('%', #{keyword}, '%')-->
-<!--            </if>-->
-<!--            <if test="searchType=='content' and keyword != null and keyword != '' ">-->
-<!--                AND CONTENT like CONCAT('%', #{keyword}, '%')-->
-<!--            </if>-->
-<!--            <if test="searchType=='reg_id' and keyword != null and keyword != '' ">-->
-<!--                AND reg_id like CONCAT('%', #{keyword}, '%')-->
-<!--            </if>-->
-<!--        </trim>-->
-<!--        LIMIT #{startList}, #{listSize}-->
+        <!--        <trim prefix="WHERE" prefixOverrides="AND|OR">-->
+        <!--            <if test="searchType=='title' and keyword != null and keyword != '' ">-->
+        <!--                AND TITLE like CONCAT('%', #{keyword}, '%')-->
+        <!--            </if>-->
+        <!--            <if test="searchType=='content' and keyword != null and keyword != '' ">-->
+        <!--                AND CONTENT like CONCAT('%', #{keyword}, '%')-->
+        <!--            </if>-->
+        <!--            <if test="searchType=='reg_id' and keyword != null and keyword != '' ">-->
+        <!--                AND reg_id like CONCAT('%', #{keyword}, '%')-->
+        <!--            </if>-->
+        <!--        </trim>-->
+        <!--        LIMIT #{startList}, #{listSize}-->
     </select>
 
     <select id="getBoardListCnt" resultType="int">
@@ -41,20 +41,20 @@
         count(*) as listCnt
         FROM
         board
-<!--        <trim prefix="WHERE" prefixOverrides="AND|OR">-->
+        <!--        <trim prefix="WHERE" prefixOverrides="AND|OR">-->
 
-<!--            <if test="keyword != null and keyword != '' ">-->
-<!--                <if test="searchType=='title'">-->
-<!--                    AND TITLE like CONCAT('%', #{keyword}, '%')-->
-<!--                </if>-->
-<!--                <if test="searchType=='content'">-->
-<!--                    AND CONTENT like CONCAT('%', #{keyword}, '%')-->
-<!--                </if>-->
-<!--                <if test="searchType=='reg_id'">-->
-<!--                    AND reg_id like CONCAT('%', #{keyword}, '%')-->
-<!--                </if>-->
-<!--            </if>-->
-<!--        </trim>-->
+        <!--            <if test="keyword != null and keyword != '' ">-->
+        <!--                <if test="searchType=='title'">-->
+        <!--                    AND TITLE like CONCAT('%', #{keyword}, '%')-->
+        <!--                </if>-->
+        <!--                <if test="searchType=='content'">-->
+        <!--                    AND CONTENT like CONCAT('%', #{keyword}, '%')-->
+        <!--                </if>-->
+        <!--                <if test="searchType=='reg_id'">-->
+        <!--                    AND reg_id like CONCAT('%', #{keyword}, '%')-->
+        <!--                </if>-->
+        <!--            </if>-->
+        <!--        </trim>-->
     </select>
 
 
@@ -77,7 +77,7 @@
     <insert id="insert"
             parameterType="Board">
         INSERT INTO board (TITLE, CONTENT, TAG,
-                               VIEW_CNT, REG_ID, REG_DT, EDIT_DT)
+                           VIEW_CNT, REG_ID, REG_DT, EDIT_DT)
         VALUES (#{title},
                 #{content},
                 #{tag},
@@ -118,11 +118,12 @@
     </update>
 
     <sql id="search">
+
         <if test="word != null and word != ''">
-            <if test="key == 'subject'">
-                and subject like concat('%', #{word}, '%')
+            <if test="key == 'title'">
+                and title like concat('%', #{word}, '%')
             </if>
-            <if test="key != 'subject'">
+            <if test="key == 'reg_id'">
                 and ${key} = #{word}
             </if>
         </if>
@@ -132,16 +133,16 @@
         select count(BID)
         from board
         <where>
-            <include refid="search"></include>
+            <include refid="search"/>
         </where>
     </select>
     <select id="listBoard" parameterType="map" resultType="board">
-        select b.bid, b.REG_ID, b.TITLE, b.content, b.VIEW_CNT, b.REG_DT
+        select bid, REG_ID, TITLE, content, VIEW_CNT, REG_DT
         from board b
-           , user m
-        where b.REG_ID = m.id
-        <include refid="search"></include>
-        order by b.BID desc
+        <where>
+            <include refid="search"/>
+        </where>
+        order by bid desc
         limit #{start}, #{listsize}
     </select>
 
