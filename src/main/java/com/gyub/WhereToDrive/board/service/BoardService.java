@@ -16,6 +16,6 @@ public interface BoardService {
 	void update(Board boardVO) throws Exception;
 	void delete(int bid) throws Exception;
 
-	Pagination makePageNavigation(Map<String, String> map) throws Exception;
-	List<Board> listArticle(Map<String, String> map) throws Exception;
+	Pagination makePageNavigation(Map<String, String> map, Search search) throws Exception;
+	List<Board> listArticle(Map<String, String> map, Search search) throws Exception;
 }

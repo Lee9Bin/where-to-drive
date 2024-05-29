@@ -45,7 +45,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public Pagination makePageNavigation(Map<String, String> map) throws Exception {
+    public Pagination makePageNavigation(Map<String, String> map, Search search) throws Exception {
         Pagination pageNavigation = new Pagination();
 
         int naviSize = 10;
@@ -54,15 +54,21 @@ public class BoardServiceImpl implements BoardService {
 
         pageNavigation.setCurrentPage(currentPage);
         pageNavigation.setNaviSize(naviSize);
-        Map<String, Object> param = new HashMap<String, Object>();
-        String key = map.get("key");
+
+        Map<String, Object> param = new HashMap<>();
+        String key = search.getKey();
+
         if ("userid".equals(key))
-            key = "user_id";
+            key = "reg_id";
+        else if ("title".equals(key))
+            key = "title";
+
         param.put("key", key == null ? "" : key);
-        param.put("word", map.get("word") == null ? "" : map.get("word"));
+        param.put("word", search.getWord() == null ? "" : search.getWord());
+
         int totalCount = boardMapper.getTotalBoardCount(param);
-        System.out.println(totalCount);
         pageNavigation.setTotalCount(totalCount);
+
         int totalPageCount = (totalCount - 1) / sizePerPage + 1;
         pageNavigation.setTotalPageCount(totalPageCount);
         boolean startRange = currentPage <= naviSize;
@@ -74,13 +80,15 @@ public class BoardServiceImpl implements BoardService {
         return pageNavigation;
     }
     @Override
-    public List<Board> listArticle(Map<String, String> map) throws Exception {
-        Map<String, Object> param = new HashMap<String, Object>();
-        String key = map.get("key");
-        if("userid".equals(key))
-            key = "b.user_id";
+    public List<Board> listArticle(Map<String, String> map, Search search) throws Exception {
+        Map<String, Object> param = new HashMap<>();
+        String key = search.getKey();
+        if ("userid".equals(key))
+            key = "reg_id";
+        else if ("title".equals(key))
+            key = "title";
         param.put("key", key == null ? "" : key);
-        param.put("word", map.get("word") == null ? "" : map.get("word"));
+        param.put("word", search.getWord() == null ? "" : search.getWord());
         int pgNo = Integer.parseInt(map.get("pgno") == null ? "1" : map.get("pgno"));
         int start = pgNo *15 - 15;
         param.put("start", start);
