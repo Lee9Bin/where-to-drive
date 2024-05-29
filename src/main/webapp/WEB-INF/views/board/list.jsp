@@ -30,20 +30,19 @@
                             <form class="d-flex" id="form-search" action="">
                                 <input type="hidden" name="pgno" value="1"/>
                                 <select
-                                        name="searchType"
-                                        id="searchType"
+                                        name="key"
+                                        id="key"
                                         class="form-select form-select-sm mr-1 w-50 form-control"
-                                        aria-label="검색조건"
-                                >
+                                        aria-label="검색조건">
                                     <option selected>검색조건</option>
                                     <option value="title">제목</option>
                                     <option value="userid">작성자</option>
                                 </select>
                                 <div class="input-group">
-                                    <input type="text" name="keyword" id="word" class="form-control"
+                                    <input type="text" name="word" id="word" class="form-control"
                                            placeholder="검색어..." value="${word}"/>
+                                    <button id="btn-search" class="btn ml-1" type="button">검색</button>
                                 </div>
-                                <button id="btn-search" class="btn ml-1" type="button">검색</button>
                             </form>
                         </div>
                     </div>
@@ -90,12 +89,6 @@
             <input type="hidden" name="pgno" id="pgno" value="${pgno}">
             <input type="hidden" name="key" value="${key}">
             <input type="hidden" name="word" value="${word}">
-        </form>
-        <form id="form-no-param" method="get" action="${root}/article/view">
-            <input type="hidden" name="pgno" value="${pgno}">
-            <input type="hidden" name="key" value="${key}">
-            <input type="hidden" name="word" value="${word}">
-            <input type="hidden" id="articleno" name="articleno" value="">
         </form>
     </section>
 </article>
