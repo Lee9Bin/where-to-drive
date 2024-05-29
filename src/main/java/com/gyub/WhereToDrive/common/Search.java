@@ -9,7 +9,7 @@ import lombok.*;
 @ToString
 public class Search extends Pagination{
 
-	private String searchType;
-	private String keyword;
+	private String key;
+	private String word;
 
 }
