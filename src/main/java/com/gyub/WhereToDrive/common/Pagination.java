@@ -27,7 +27,7 @@ public class Pagination {
             endPage = totalPageCount;
 
         StringBuilder builder = new StringBuilder();
-        builder.append("		<ul class=\"pagination  justify-content-center\"> \n");
+        builder.append("		<ul class=\"pagination  justify-content-center mb-4\"> \n");
         builder.append("			<li class=\"page-item\" data-pg=\"1\"> \n");
         builder.append("				<a href=\"#\" class=\"page-link\">최신</a> \n");
         builder.append("			</li> \n");
