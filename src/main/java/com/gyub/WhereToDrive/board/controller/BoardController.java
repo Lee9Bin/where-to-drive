@@ -27,14 +27,15 @@ public class BoardController {
 
     @GetMapping
     public String findByAll(@RequestParam Map<String, String> map, @ModelAttribute Search search, Model model) throws Exception {
+        List<Board> list = boardService.listArticle(map, search);
+        Pagination pagination = boardService.makePageNavigation(map, search);
 
-        List<Board> list = boardService.listArticle(map);
-        Pagination pagination = boardService.makePageNavigation(map);
         model.addAttribute("boardList", list);
         model.addAttribute("navigation", pagination);
         model.addAttribute("pgno", map.get("pgno"));
-        model.addAttribute("key", map.get("key"));
-        model.addAttribute("word", map.get("word"));
+        model.addAttribute("key", search.getKey());
+        model.addAttribute("word", search.getWord());
+
         return "board/list";
     }
 
