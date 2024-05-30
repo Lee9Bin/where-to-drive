@@ -50,8 +50,12 @@ public class BoardServiceImpl implements BoardService {
 
         int naviSize = 10;
         int sizePerPage = 15;
-        int currentPage = Integer.parseInt(map.get("pgno"));
-
+        int currentPage;
+        try {
+            currentPage = Integer.parseInt("pgno");
+        } catch (NumberFormatException e) {
+            currentPage = 1;
+        }
         pageNavigation.setCurrentPage(currentPage);
         pageNavigation.setNaviSize(naviSize);
 

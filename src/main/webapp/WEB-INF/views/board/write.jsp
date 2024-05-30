@@ -49,19 +49,6 @@
 		crossorigin="anonymous">
 </script>
 <script>
-	$(document).ready(function() {
-		var mode = '<c:out value="${mode}"/>';
-		if (mode == 'edit') {
-			//입력 폼 셋팅
-			$("#reg_id").prop('readonly', true);
-			$("input:hidden[name='bid']").val(<c:out value="${boardContent.bid}"/>);
-			$("input:hidden[name='mode']").val('<c:out value="${mode}"/>');
-			$("#reg_id").val('<c:out value="${boardContent.reg_id}"/>');
-			$("#title").val('<c:out value="${boardContent.title}"/>');
-			$("#content").val('<c:out value="${boardContent.content}"/>');
-			$("#tag").val('<c:out value="${boardContent.tag}"/>');
-		}
-	});
 
 	$(document).on('click', '#btnSave', function(e) {
 		e.preventDefault();

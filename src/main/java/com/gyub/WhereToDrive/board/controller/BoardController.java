@@ -46,8 +46,8 @@ public class BoardController {
     }
 
     @PostMapping("/write")
-    public String insert(@ModelAttribute Board boardVO) throws Exception {
-        log.info(boardVO.toString());
+    public String write(@ModelAttribute Board boardVO) throws Exception {
+        log.info("잘들어오나?{}",boardVO);
         boardService.insert(boardVO);
         return "redirect:/boards";
     }
