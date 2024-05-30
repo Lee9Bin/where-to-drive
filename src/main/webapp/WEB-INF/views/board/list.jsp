@@ -21,11 +21,13 @@
                 </div>
                 <div class="col-lg-8 col-md-10 col-sm-12">
                     <div class="row align-self-center mb-2">
-                        <div class="col-md-2 text-start">
-                            <button type="button" id="btn-mv-register" class="btn btn-sm">
-                                글쓰기
-                            </button>
-                        </div>
+                        <c:if test="${member != null}">
+                            <div class="col-md-2 text-start">
+                                <button type="button" id="writeForm" class="btn btn-sm">
+                                    글쓰기
+                                </button>
+                            </div>
+                        </c:if>
                         <div class="col-md-7 offset-3">
                             <form class="d-flex" id="form-search" action="">
                                 <input type="hidden" name="pgno" value="1"/>
@@ -102,10 +104,8 @@
             });
         });
 
-        document.querySelector("#btn-mv-register").addEventListener("click", () => {
-            const form = document.querySelector("#form-param");
-            form.action = "${root}/boards/write";
-            form.submit();
+        document.querySelector("#writeForm").addEventListener("click", () => {
+            window.location.href = "/boards/write";
         });
 
         document.querySelector("#btn-search").addEventListener("click", () => {

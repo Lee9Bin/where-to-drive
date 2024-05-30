@@ -39,12 +39,18 @@ public class BoardController {
         return "board/list";
     }
 
-    @GetMapping("/boardForm")
+    @GetMapping("/write")
     public String boardForm() {
         log.info("boardForm 메서드 실행");
         return "board/write";
     }
 
+    @PostMapping("/write")
+    public String insert(@ModelAttribute Board boardVO) throws Exception {
+        log.info(boardVO.toString());
+        boardService.insert(boardVO);
+        return "redirect:/boards";
+    }
 
     @GetMapping("/{bid}")
     public String findById(Model model, @PathVariable("bid") int bid) throws Exception {
@@ -66,13 +72,6 @@ public class BoardController {
     public String update(@ModelAttribute Board boardVO) throws Exception {
         log.info(boardVO.toString());
         boardService.update(boardVO);
-        return "redirect:/boards";
-    }
-
-    @PostMapping("/insert")
-    public String insert(@ModelAttribute Board boardVO) throws Exception {
-        log.info(boardVO.toString());
-        boardService.insert(boardVO);
         return "redirect:/boards";
     }
 
