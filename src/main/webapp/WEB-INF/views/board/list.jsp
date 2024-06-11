@@ -104,8 +104,10 @@
             });
         });
 
-        document.querySelector("#writeForm").addEventListener("click", () => {
-            window.location.href = "/boards/write";
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("#writeForm").addEventListener("click", function () {
+                window.location.href = "/boards/write";
+            });
         });
 
         document.querySelector("#btn-search").addEventListener("click", () => {
@@ -114,13 +116,15 @@
             form.submit();
         });
 
-        document.querySelectorAll(".page-link").forEach(page => {
-            page.addEventListener("click", () => {
-                document.querySelector("#pgno").value = page.parentNode.dataset.pg;
-                const form = document.querySelector("#form-param");
-                form.action = "/boards";
+        let pages = document.querySelectorAll(".page-link");
+        pages.forEach(function (page) {
+            page.addEventListener("click", function () {
+                document.querySelector("#pgno").value = this.parentNode.getAttribute("data-pg");
+                let form = document.querySelector("#form-param");
+                form.setAttribute("action", "/boards");
                 form.submit();
             });
         });
+
     });
 </script>

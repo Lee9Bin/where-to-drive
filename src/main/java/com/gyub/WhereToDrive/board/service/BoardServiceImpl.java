@@ -52,7 +52,7 @@ public class BoardServiceImpl implements BoardService {
         int sizePerPage = 15;
         int currentPage;
         try {
-            currentPage = Integer.parseInt("pgno");
+            currentPage = Integer.parseInt(map.get("pgno"));
         } catch (NumberFormatException e) {
             currentPage = 1;
         }
