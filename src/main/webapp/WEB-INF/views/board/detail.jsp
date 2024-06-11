@@ -17,34 +17,34 @@
                 <tbody>
                 <tr>
                     <th class="bg-light" scope="row" style="width: 150px;">제목</th>
-                    <td><c:out value="${boardContent.title}"/></td>
+                    <td><c:out value="${board.title}"/></td>
                 </tr>
                 <tr>
                     <th class="bg-light" scope="row">작성자</th>
-                    <td><c:out value="${boardContent.reg_id}"/></td>
+                    <td><c:out value="${board.reg_id}"/></td>
                 </tr>
                 <tr>
                     <th class="bg-light" scope="row">작성일</th>
-                    <td><c:out value="${boardContent.reg_dt}"/></td>
+                    <td><c:out value="${board.reg_dt}"/></td>
                 </tr>
                 <tr>
                     <th class="bg-light" scope="row">내용</th>
-                    <td><c:out value="${boardContent.content}"/></td>
+                    <td><c:out value="${board.content}"/></td>
                 </tr>
                 <tr>
                     <th class="bg-light" scope="row">태그</th>
-                    <td><c:out value="${boardContent.tag}"/></td>
+                    <td><c:out value="${board.tag}"/></td>
                 </tr>
                 </tbody>
             </table>
 
             <div class="sign-in">
                 <div class="btn-group" role="group" aria-label="Board Actions">
-                    <c:if test="${boardContent.reg_id == member.memberId}">
-                        <form class="mx-1" action="/boards/edit/${boardContent.bid}" method="get">
+                    <c:if test="${board.reg_id == member.id}">
+                        <form class="mx-1" action="/boards/edit/${board.bid}" method="get">
                             <button type="submit" class="btn btn-primary">수정</button>
                         </form>
-                        <form class="mx-1" action="/boards/delete/${boardContent.bid}" method="post">
+                        <form class="mx-1" action="/boards/delete/${board.bid}" method="post">
                             <button type="submit" class="btn btn-danger">삭제</button>
                         </form>
                     </c:if>

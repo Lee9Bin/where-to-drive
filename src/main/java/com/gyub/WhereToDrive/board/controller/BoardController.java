@@ -55,7 +55,7 @@ public class BoardController {
     @GetMapping("/{bid}")
     public String findById(Model model, @PathVariable("bid") int bid) throws Exception {
         log.info("findById 메서드 실행");
-        model.addAttribute("boardContent", boardService.findById(bid));
+        model.addAttribute("board", boardService.findById(bid));
         return "board/detail";
     }
 
